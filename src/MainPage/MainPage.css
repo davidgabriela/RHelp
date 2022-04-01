@@ -1,0 +1,22 @@
+.main-container {
+    min-width: 100%;
+    height: 100vh;
+}
+
+.main-row {
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.main-col {
+    background-color: aquamarine;
+    height: 100%;
+}
+
+.main-map {
+    background-color:gainsboro;
+}
+
+.main-hero {
+    background-color: dimgrey;
+}
