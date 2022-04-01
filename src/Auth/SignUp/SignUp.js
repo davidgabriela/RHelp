@@ -1,8 +1,10 @@
-
 import { Link, useHistory } from "react-router-dom";
-export default function SignUp() {
-    return(
+import React, { Component } from "react";
 
-    <><div>SignUp</div> </>
-    )
+export default function SignUp() {
+    return (
+        <>
+            <div>SignUp</div>{" "}
+        </>
+    );
 }
