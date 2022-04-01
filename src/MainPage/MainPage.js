@@ -1,6 +1,6 @@
 class MainPage extends React.Component {
     render() {
-        return <h1>HMain Page works!</h1>;
+        return <h1>Main Page works!</h1>;
     }
 }
 
