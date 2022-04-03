@@ -1,3 +1,12 @@
+.navigation {
+    padding: 30px;
+}
+
+.btn-link { 
+    text-decoration: none;
+    color: white;
+}
+
 .main-container {
     min-width: 100%;
     height: 100vh;
@@ -19,4 +28,18 @@
 
 .main-hero {
     background-color: dimgrey;
+}
+
+.main-box {
+    height: 80vh;
+    margin: 0 10vw;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main-box h1, p {
+    padding: 10px 0;
 }
