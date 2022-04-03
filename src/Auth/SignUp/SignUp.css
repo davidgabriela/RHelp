@@ -1,0 +1,19 @@
+#card-container-signup {
+    width: 55%;
+    margin-left: 22.5%;
+    padding: 0 2rem;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+#login-check {
+    margin-bottom: 40px;
+}
+
+.auth-button {
+    background-color: rgb(52, 58, 64) !important;
+}
+
+.auth-button:hover {
+    background-color: #5c636a !important;
+}
