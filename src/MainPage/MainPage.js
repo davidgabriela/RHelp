@@ -3,12 +3,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import classes from "./MainPage.css";
 
 class MainPage extends React.Component {
     render() {
         return (
             <>
+            
                 <Container className='main-container'>
                     <Row className='main-row'>
                         <Col lg={12} xl className='main-col main-map'></Col>
