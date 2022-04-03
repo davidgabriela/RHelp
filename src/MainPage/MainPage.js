@@ -7,6 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import classes from "./MainPage.css";
+import { Link } from "react-router-dom";
 
 class MainPage extends React.Component {
     render() {
@@ -16,50 +17,6 @@ class MainPage extends React.Component {
                     <Row className='main-row'>
                         <Col lg={12} xl className='main-col main-map'></Col>
                         <Col lg={12} xl className='main-col main-hero'>
-                            <Nav
-                                className='justify-content-end navigation'
-                                activeKey='/home'
-                            >
-                                <Nav.Item>
-                                    <Nav.Link href=''>
-                                        <DropdownButton
-                                            id='dropdown-basic-button'
-                                            title='English'
-                                        >
-                                            <Dropdown.Item href='#/action-1'>
-                                                French
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href='#/action-2'>
-                                                German
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href='#/action-3'>
-                                                Italian
-                                            </Dropdown.Item>
-                                        </DropdownButton>
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>
-                                        <Button variant='outline-light'>
-                                            FAQ
-                                        </Button>
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>
-                                        <Button variant='outline-light'>
-                                            Support
-                                        </Button>
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>
-                                        <Button variant='primary'>
-                                            Log In
-                                        </Button>
-                                    </Nav.Link>
-                                </Nav.Item>
-                            </Nav>
                             <div className='main-box'>
                                 <h1>Housing for refugees</h1>
                                 <p>
@@ -68,7 +25,9 @@ class MainPage extends React.Component {
                                     nibh vel placerat. Pellentesque pulvinar
                                     tempus lorem eu fringilla.{" "}
                                 </p>
-                                <Button variant='primary'>Get Started</Button>{" "}
+                                <Link to='/signup'>
+                                    <Button>Get Started</Button>
+                                </Link>
                             </div>
                         </Col>
                     </Row>
