@@ -1,0 +1,12 @@
+[
+	{
+		"_id": "5d713995b721c3bb38c1f5d0",
+		"user": "5d7a514b5d2c12c7449be045",
+		"name": "Andrei Manea",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris odio tellus, ultrices at semper eget, pellentesque mattis turpis. Vestibulum id ornare nulla. Nulla suscipit risus justo, ac hendrerit libero interdum ut. ",
+		"phone": "(111) 111-1111",
+		"email": "andrei.manea@gmail.com",
+		"address": "233 Bay State Rd Boston MA 02215",
+		"housing": true
+	}
+]
