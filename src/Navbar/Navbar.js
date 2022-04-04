@@ -67,7 +67,6 @@ export default function BootstrapNavbar() {
                                         <Button variant='primary'>
                                             Log In
                                         </Button>
-                                        <Link to='/signup'></Link>
                                     </Nav.Link>
                                 </Nav.Item>
                             </Nav>
