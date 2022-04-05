@@ -30,6 +30,13 @@ export default function BootstrapNavbar() {
                                 React-Bootstrap
                             </Navbar.Brand>
                             <Nav className='justify-content-end'>
+                            <Nav.Item>
+                                    <Nav.Link href='/addlisting'>
+                                        <Button variant='outline-light'>
+                                            Add Listing
+                                        </Button>
+                                    </Nav.Link>
+                                </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link href=''>
                                         <DropdownButton
