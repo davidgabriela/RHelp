@@ -12,6 +12,7 @@ connectDB();
 
 //Route files
 const listings = require("./routes/listings");
+const hosts = require("./routes/hosts");
 
 const app = express();
 
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount routers
 app.use("/api/v1/listings", listings);
+app.use("/api/v1/hosts", hosts);
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -54,5 +56,5 @@ const server = app.listen(
 process.on("unhandledRejection", (err, promise) => {
     console.log(`Error: ${err.message}`);
     //Close server $ exit process
-    server.close(() => process.exit(1));
+    //server.close(() => process.exit(1));
 });
