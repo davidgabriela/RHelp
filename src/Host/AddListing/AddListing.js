@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/AuthContexts";
 import { Link, useHistory  } from "react-router-dom";
 import { database } from "../../firebase";
 import DisplayImage from "../DisplayImage/DisplayImage";
+import FileBase64 from "react-file-base64";
 export default function AddListing() {
 
     const listingTitle = useRef();
@@ -103,7 +104,7 @@ export default function AddListing() {
                         </Form.Group>
                         <Form.Group id="addfac"> 
                         <Form.Label>Upload image</Form.Label>
-                            <DisplayImage/>
+                        <DisplayImage/>
                         </Form.Group>
                        
                         <Button disabled={loading} className="w-100 auth-button" type="submit">

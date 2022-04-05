@@ -1,35 +1,31 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class DisplayImage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      image: null
-    };
+const UploadAndDisplayImage = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
 
-    this.onImageChange = this.onImageChange.bind(this);
-  }
-
-  onImageChange = event => {
-    if (event.target.files && event.target.files[0]) {
-      let img = event.target.files[0];
-      this.setState({
-        image: URL.createObjectURL(img)
-      });
-    }
-  };
-
-  render() {
-    return (
-      <div>
+  return (
+    <div>
+      
+      {selectedImage && (
         <div>
-          <div>
-            <img src={this.state.image} />
-            <input type="file" name="myImage" onChange={this.onImageChange} />
-          </div>
+        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+        <br />
+        <button onClick={()=>setSelectedImage(null)}>Remove</button>
         </div>
-      </div>
-    );
-  }
-}
-export default DisplayImage;
+      )}
+      <br />
+     
+      <br /> 
+      <input
+        type="file"
+        name="myImage"
+        onChange={(event) => {
+          console.log(event.target.files[0]);
+          setSelectedImage(event.target.files[0]);
+        }}
+      />
+    </div>
+  );
+};
+
+export default UploadAndDisplayImage;
