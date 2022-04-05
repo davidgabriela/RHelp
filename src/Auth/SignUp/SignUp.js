@@ -16,6 +16,21 @@ export default function SignUp() {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
+    function sendData() {
+        console.log("sendData");
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: emailRef.current.value }),
+        };
+
+        fetch("http://localhost:5000/api/v1/hosts", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -27,6 +42,7 @@ export default function SignUp() {
             setError("");
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value);
+            sendData();
             history.push("/");
         } catch (error) {
             setError(error.message);
@@ -55,7 +71,6 @@ export default function SignUp() {
                         <Form.Group id='group'>
                             <Form.Label>Role</Form.Label>
                             <Form.Select ref={groupRef} required>
-                                <option>Select option</option>
                                 <option>Host</option>
                                 <option>Guest</option>
                             </Form.Select>
