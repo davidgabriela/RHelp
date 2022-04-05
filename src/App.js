@@ -8,6 +8,7 @@ import Dashboard from "./Guest/Dashboard/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./Navbar/Navbar";
 import { AuthProvider } from "./contexts/AuthContexts";
+import AddListing from "./Host/AddListing/AddListing";
 
 function App() {
     return (
@@ -27,6 +28,11 @@ function App() {
                                 exact
                                 path='/guestdash'
                                 component={Dashboard}
+                            />
+                            <Route
+                                exact
+                                path='/addlisting'
+                                component={AddListing}
                             />
                         </Switch>
                     </AuthProvider>
