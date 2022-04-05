@@ -15,6 +15,7 @@ const listings = require("./routes/listings");
 
 const app = express();
 
+app.use(cors());
 // Body parser
 app.use(express.json());
 
@@ -24,8 +25,6 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount routers
 app.use("/api/v1/listings", listings);
-
-app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");

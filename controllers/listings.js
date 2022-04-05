@@ -1,16 +1,17 @@
 const Listing = require("../models/Listing");
 
-// @desc    Get all lisitngs
-// @route   GET /api/v1/lisitngs
+// @desc    Get all listings
+// @route   GET /api/v1/listings
 // @access  Public
 exports.getListings = async (req, res, next) => {
     try {
-        const lisitngs = await Listing.find();
+        const listings = await Listing.find();
+        console.log(listings[0]["name"]);
 
         res.status(200).json({
             success: true,
-            count: lisitngs.length,
-            data: lisitngs,
+            count: listings.length,
+            data: listings,
         });
     } catch (err) {
         res.status(400).json({
@@ -19,16 +20,16 @@ exports.getListings = async (req, res, next) => {
     }
 };
 
-// @desc    Get a single lisitng
-// @route   GET /api/v1/lisitngs/:id
+// @desc    Get a single listings
+// @route   GET /api/v1/listings/:id
 // @access  Public
 exports.getListing = async (req, res, next) => {
     try {
-        const lisitng = await Listing.findById(req.params.id);
+        const listing = await Listing.findById(req.params.id);
 
         res.status(200).json({
             success: true,
-            data: lisitng,
+            data: listing,
         });
     } catch (err) {
         res.status(400).json({
@@ -37,8 +38,8 @@ exports.getListing = async (req, res, next) => {
     }
 };
 
-// @desc    Create new lisitngs
-// @route   POST /api/v1/lisitngs
+// @desc    Create new listings
+// @route   POST /api/v1/listings
 // @access  Private
 exports.createListing = async (req, res, next) => {
     const listing = await Listing.create(req.body);
@@ -48,8 +49,8 @@ exports.createListing = async (req, res, next) => {
     });
 };
 
-// @desc    Update a lisitng
-// @route   PUT /api/v1/lisitngs/:id
+// @desc    Update a listings
+// @route   PUT /api/v1/listings/:id
 // @access  Private
 exports.updateListing = async (req, res, next) => {
     try {
@@ -77,8 +78,8 @@ exports.updateListing = async (req, res, next) => {
     }
 };
 
-// @desc    Delete a lisitng
-// @route   DELETE /api/v1/lisitngs/:id
+// @desc    Delete a listing
+// @route   DELETE /api/v1/listings/:id
 // @access  Private
 exports.deleteListing = async (req, res, next) => {
     try {

@@ -14,10 +14,8 @@ const Card = (props) => {
             </div>
 
             <div className='card-body text-dark'>
-                <h4 className='card-title'>{props.listing.name}</h4>
-                <p className='card-text text-secondary'>
-                    {props.listing.phone}
-                </p>
+                <h4 className='card-title'>{props.name}</h4>
+                <p className='card-text text-secondary'>{props.phone}</p>
                 <Link
                     className='btn btn-outline-success'
                     to={{ pathname: `#` }}

@@ -1,49 +1,60 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { Component } from "react";
 import Card from "../../Card/Card";
 import img1 from "./react-logo.png";
+import axios from "axios";
 
-function Dashboard() {
-    const [listings, setListings] = useState([]);
+// const Listing = (props) => (
+//     <Card
+//         name={props.listing.name}
+//         phoneNumber={props.listin.phone}
+//         imgsrc={img1}
+//     />
+// );
 
-    useEffect(() => {
-        async function getListings() {
-            const response = await fetch(
-                `http://localhost:5000/api/v1/listings`,
-                {
-                    method: "GET",
-                }
-            );
+class Dashboard extends Component {
+    state = {
+        listings: [],
+    };
 
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                window.alert(message);
-                return;
-            }
+    componentDidMount = () => {
+        this.getData();
+    };
 
-            const listings = await response.json();
-            setListings(listings);
-        }
+    getData = () => {
+        axios
+            .get("http://localhost:5000/api/v1/listings")
+            .then((response) => {
+                const data = response.data.data;
+                this.setState({ listings: data });
+                console.log("Data has been received!");
+                console.log(data);
+            })
+            .catch(() => {
+                alert("Error retrieving data!");
+            });
+    };
 
-        getListings();
-        return;
-    });
+    displayCard = (listings) => {
+        if (!listings.length) return null;
 
-    function listingList() {
-        return listings.map((item) => {
-            return (
-                <Card name={item.name} phoneNumber={item.phone} imgsrc={img1} />
-            );
-        });
-    }
+        return listings.map((item, index) => (
+            <Card name={item.name} phone={item.phone} imgsrc={img1}></Card>
+        ));
+    };
 
-    return (
-        <div>
-            <div className='container-fluid d-flex justify-content-center'>
-                <div className='row' id='courses'>
-                    <div className='col-md-4'>{listingList()}</div>
+    render() {
+        return (
+            <div>
+                <div className='container-fluid d-flex justify-content-center'>
+                    <div className='row' id='courses'>
+                        <div className='col-md-4'>
+                            {this.displayCard(this.state.listings)}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
+
 export default Dashboard;
