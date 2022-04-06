@@ -13,6 +13,7 @@ connectDB();
 //Route files
 const listings = require("./routes/listings");
 const hosts = require("./routes/hosts");
+const guests = require("./routes/guests");
 
 const app = express();
 
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === "development") {
 // Mount routers
 app.use("/api/v1/listings", listings);
 app.use("/api/v1/hosts", hosts);
+app.use("/api/v1/guests", guests);
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");

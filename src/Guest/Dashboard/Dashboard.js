@@ -2,14 +2,7 @@ import React, { Component } from "react";
 import Card from "../../Card/Card";
 import img1 from "./react-logo.png";
 import axios from "axios";
-
-// const Listing = (props) => (
-//     <Card
-//         name={props.listing.name}
-//         phoneNumber={props.listin.phone}
-//         imgsrc={img1}
-//     />
-// );
+import Navbar from "../../Navbar/Navbar";
 
 class Dashboard extends Component {
     state = {
@@ -45,6 +38,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
+                <Navbar role='guest'></Navbar>
                 <div className='container-fluid d-flex justify-content-center'>
                     <div className='row' id='courses'>
                         <div className='col-md-4'>

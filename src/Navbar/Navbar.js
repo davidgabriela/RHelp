@@ -8,7 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 
-export default function BootstrapNavbar() {
+export default function BootstrapNavbar(props) {
     const [error, setError] = useState("");
     let email = undefined;
     async function handleLogout() {
@@ -17,10 +17,10 @@ export default function BootstrapNavbar() {
     return (
         <div>
             <div className='row'>
-                <div className='col-md-12' id='navbar-container'>
+                <div className='col-md-12'>
                     <Router>
                         <Navbar
-                            className='navbar-container'
+                            id='navbar-container'
                             bg='dark'
                             variant='dark'
                             expand='lg'
@@ -29,14 +29,18 @@ export default function BootstrapNavbar() {
                             <Navbar.Brand href='/'>
                                 React-Bootstrap
                             </Navbar.Brand>
-                            <Nav className='justify-content-end'>
-                            <Nav.Item>
-                                    <Nav.Link href='/addlisting'>
-                                        <Button variant='outline-light'>
-                                            Add Listing
-                                        </Button>
-                                    </Nav.Link>
-                                </Nav.Item>
+                            <Nav>
+                                {props.role === "host" ? (
+                                    <Nav.Item>
+                                        <Nav.Link href='/addlisting'>
+                                            <Button variant='outline-light'>
+                                                Add Listing
+                                            </Button>
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                ) : (
+                                    <div></div>
+                                )}
                                 <Nav.Item>
                                     <Nav.Link href=''>
                                         <DropdownButton

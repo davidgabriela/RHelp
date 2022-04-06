@@ -6,7 +6,7 @@ import "./SignUp.css";
 
 export default function SignUp() {
     // const nameRef = useRef();
-    const groupRef = useRef();
+    const roleRef = useRef();
     // const userRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -17,14 +17,20 @@ export default function SignUp() {
     const history = useHistory();
 
     function sendData() {
-        console.log("sendData");
+        console.log(roleRef.current.value, typeof roleRef.current.value);
+
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: emailRef.current.value }),
         };
 
-        fetch("http://localhost:5000/api/v1/hosts", requestOptions)
+        fetch(
+            `http://localhost:5000/api/v1/${
+                roleRef.current.value.toLowerCase() + "s"
+            }`,
+            requestOptions
+        )
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -70,7 +76,7 @@ export default function SignUp() {
 
                         <Form.Group id='group'>
                             <Form.Label>Role</Form.Label>
-                            <Form.Select ref={groupRef} required>
+                            <Form.Select ref={roleRef} required>
                                 <option>Host</option>
                                 <option>Guest</option>
                             </Form.Select>
