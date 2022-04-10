@@ -18,7 +18,6 @@ export default function Login() {
             .then((response) => {
                 const data = response.data.data;
                 setData(data);
-                console.log(data);
             })
             .catch(() => {
                 alert("Error retrieving data!");
@@ -27,7 +26,6 @@ export default function Login() {
         const findGuest = data.filter((item) => {
             return item.email === email;
         });
-        console.log(findGuest);
         if (findGuest.length) return true;
         else return false;
     }

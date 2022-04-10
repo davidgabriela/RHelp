@@ -14,8 +14,6 @@ function App() {
         <>
             <div className='align-items-center justify-content-center'>
                 <div className='w-100'>
-                    {console.log("dsadefef")}
-
                     <Router>
                         <AuthProvider>
                             <Switch>
