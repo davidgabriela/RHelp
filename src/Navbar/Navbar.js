@@ -71,9 +71,9 @@ export default function BootstrapNavbar(props) {
                     <Nav.Link href='/login'>
                         <Button variant='primary'>Log In</Button>
                     </Nav.Link>
-                    <Nav.Link href='/login' onClick={handleLogout}>
-                        Log Out
-                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                 </Nav.Item>
             </Nav>
         </Navbar>
