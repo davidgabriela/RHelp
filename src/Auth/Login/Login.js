@@ -2,6 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
+import { useAuth } from "../../contexts/AuthContexts";
 import "./Login.css";
 
 export default function Login() {
@@ -11,6 +12,7 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const history = useHistory();
+    const { login } = useAuth();
 
     function checkUser(email) {
         axios
@@ -41,7 +43,7 @@ export default function Login() {
         try {
             setError("");
             setLoading(true);
-            // await login(emailRef.current.value, passwordRef.current.value);
+            await login(emailRef.current.value, passwordRef.current.value);
             if (checkUser(emailRef.current.value)) {
                 history.push("/guestdash");
             } else {

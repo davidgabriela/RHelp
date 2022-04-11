@@ -13,7 +13,18 @@ class Dashboard extends Component {
         this.getData();
     };
 
+    checkUser = () => {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log("Signed up", user.email);
+            } else {
+                console.log("No user", user);
+            }
+        });
+    };
+
     getData = () => {
+        this.checkUser();
         axios
             .get("http://localhost:5000/api/v1/listings")
             .then((response) => {
