@@ -66,7 +66,6 @@ const ListingSchema = new mongoose.Schema({
     },
     photo: {
         type: String,
-        default: "no-photo.jpg",
     },
     averageRating: {
         type: Number,

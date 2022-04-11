@@ -84,10 +84,7 @@ export default function AddListing() {
     }
 
     const onImgUpload = (url) => {
-        if (url) {
-            console.log("url: ", url);
-            setPhotoUrl(url);
-        }
+        setPhotoUrl(url);
     };
 
     return (

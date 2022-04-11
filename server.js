@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 const cors = require("cors");
 
+var fs = require("fs");
+var path = require("path");
+
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 
@@ -16,10 +19,14 @@ const hosts = require("./routes/hosts");
 const guests = require("./routes/guests");
 
 const app = express();
+app.use(express.json({ limit: "30mb", extended: true }));
+
+// Body parser
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 app.use(cors());
-// Body parser
-app.use(express.json());
+
+app.set("view engine", "ejs");
 
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
@@ -29,6 +36,18 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/listings", listings);
 app.use("/api/v1/hosts", hosts);
 app.use("/api/v1/guests", guests);
+var multer = require("multer");
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "-" + Date.now());
+    },
+});
+
+var upload = multer({ storage: storage });
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
