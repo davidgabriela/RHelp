@@ -31,7 +31,11 @@ class Dashboard extends Component {
         if (!listings.length) return null;
 
         return listings.map((item, index) => (
-            <Card name={item.name} phone={item.phone} imgsrc={img1}></Card>
+            <Card
+                name={item.title}
+                phone={item.owner_email}
+                imgsrc={item.photo}
+            ></Card>
         ));
     };
 
