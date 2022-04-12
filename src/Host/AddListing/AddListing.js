@@ -1,10 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Card, Form, Button, Alert } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContexts";
-import { Link, useHistory } from "react-router-dom";
-import { database } from "../../firebase";
-import DisplayImage from "../DisplayImage/DisplayImage";
+import { Alert, Button, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase";
+import DisplayImage from "../DisplayImage/DisplayImage";
 
 export default function AddListing() {
     const listingTitle = useRef();

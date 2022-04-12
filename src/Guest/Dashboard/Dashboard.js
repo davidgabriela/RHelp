@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Card from "../../Card/Card";
-import img1 from "./react-logo.png";
 import axios from "axios";
 import Navbar from "../../Navbar/Navbar";
 

@@ -1,31 +1,50 @@
-import "./Navbar.css";
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Nav from "react-bootstrap/Nav";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
 import { Navbar } from "react-bootstrap";
-import { auth } from "../firebase";
+import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Nav from "react-bootstrap/Nav";
 import { useAuth } from "../contexts/AuthContexts";
+import { auth } from "../firebase";
+import "./Navbar.css";
 
 export default function BootstrapNavbar(props) {
     const { logout } = useAuth();
     const [error, setError] = useState("");
-    let email = undefined;
 
     if (auth.currentUser != null) {
-        email = auth.currentUser.email;
+        console.log("Logged in as", auth.currentUser.email);
+    } else {
+        console.log("Nobody logged in...");
     }
 
     async function handleLogout() {
-        setError("");
-
         try {
             await logout();
         } catch {
             setError("Failed to log out");
         }
     }
+
+    var authButton = (user) => {
+        if (user != null) {
+            return (
+                <Nav.Item>
+                    <Nav.Link href='/' onClick={handleLogout}>
+                        <Button variant='primary'>Log Out</Button>
+                    </Nav.Link>
+                </Nav.Item>
+            );
+        } else
+            return (
+                <Nav.Item>
+                    <Nav.Link href='/login'>
+                        <Button variant='primary'>Log In</Button>
+                    </Nav.Link>
+                </Nav.Item>
+            );
+    };
+
     return (
         <Navbar id='navbar-container' bg='dark' variant='dark' sticky='top'>
             <Navbar.Brand href='/'>React-Bootstrap</Navbar.Brand>
@@ -67,14 +86,7 @@ export default function BootstrapNavbar(props) {
                         <Button variant='outline-light'>Support</Button>
                     </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link href='/login'>
-                        <Button variant='primary'>Log In</Button>
-                    </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
-                </Nav.Item>
+                {authButton(auth.currentUser)}
             </Nav>
         </Navbar>
     );
