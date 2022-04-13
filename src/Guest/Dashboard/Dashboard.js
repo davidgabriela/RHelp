@@ -32,6 +32,7 @@ class Dashboard extends Component {
                 name={item.title}
                 phone={item.owner_email}
                 imgsrc={item.photo}
+                listingId={item._id}
             ></Card>
         ));
     };

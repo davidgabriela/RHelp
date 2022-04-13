@@ -14,10 +14,9 @@ const Card = (props) => {
                 <p className='card-text text-secondary'>{props.phone}</p>
                 <Link
                     className='btn btn-outline-success'
-                    to={{ pathname: `#` }}
+                    to={{ pathname: `/listingpage/${props.listingId}` }}
                 >
-                    {" "}
-                    More info{" "}
+                    More info
                 </Link>
             </div>
         </div>

@@ -42,7 +42,7 @@ function App() {
                                 />
                                 <Route
                                     exact
-                                    path='/listingpage'
+                                    path='/listingpage/:id'
                                     component={ListingPage}
                                 />
                             </Switch>
