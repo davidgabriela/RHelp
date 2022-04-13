@@ -8,6 +8,7 @@ import HostDashboard from "./Host/Dashboard/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./contexts/AuthContexts";
 import AddListing from "./Host/AddListing/AddListing";
+import ListingPage from "./ListingPage/ListingPage";
 
 function App() {
     return (
@@ -38,6 +39,11 @@ function App() {
                                     exact
                                     path='/addlisting'
                                     component={AddListing}
+                                />
+                                <Route
+                                    exact
+                                    path='/listingpage'
+                                    component={ListingPage}
                                 />
                             </Switch>
                         </AuthProvider>

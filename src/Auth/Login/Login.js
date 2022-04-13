@@ -20,18 +20,26 @@ export default function Login() {
             .then((response) => {
                 const data = response.data.data;
                 setData(data);
+                //console.log(data);
             })
             .catch(() => {
                 alert("Error retrieving data!");
             });
+        const asArray = Object.entries(data);
 
+        const filtered = asArray.filter(([key, value]) => console.log(value.email));
+        
+        const justStrings = Object.fromEntries(filtered);
+        //console.log(justStrings);
         const findGuest = data.filter((item) => {
+           // console.log(item.email === email)
             return item.email === email;
         });
+        //console.log(findGuest);
         if (findGuest.length) return true;
         else return false;
     }
-
+    
     function handleLogIn(e) {
         e.preventDefault();
 
