@@ -18,8 +18,6 @@ class Dashboard extends Component {
             .then((response) => {
                 const data = response.data.data;
                 this.setState({ listings: data });
-                console.log("Data has been received!");
-                console.log(data);
             })
             .catch(() => {
                 alert("Error retrieving data!");

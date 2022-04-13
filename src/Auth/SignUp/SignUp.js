@@ -17,8 +17,6 @@ export default function SignUp() {
     const history = useHistory();
 
     function sendData() {
-        console.log(roleRef.current.value, typeof roleRef.current.value);
-
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },

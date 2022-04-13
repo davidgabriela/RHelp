@@ -1,5 +1,5 @@
 import { Link, useHistory } from "react-router-dom";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContexts";
@@ -14,32 +14,26 @@ export default function Login() {
     const history = useHistory();
     const { login } = useAuth();
 
-    function checkUser(email) {
+    useEffect(() => {
         axios
             .get("http://localhost:5000/api/v1/guests")
             .then((response) => {
-                const data = response.data.data;
-                setData(data);
-                //console.log(data);
+                setData(response.data.data);
             })
             .catch(() => {
-                alert("Error retrieving data!");
+                alert("Error retrieving guests!");
             });
-        const asArray = Object.entries(data);
+    }, []);
 
-        const filtered = asArray.filter(([key, value]) => console.log(value.email));
-        
-        const justStrings = Object.fromEntries(filtered);
-        //console.log(justStrings);
+    function checkUser(email) {
         const findGuest = data.filter((item) => {
-           // console.log(item.email === email)
             return item.email === email;
         });
-        //console.log(findGuest);
-        if (findGuest.length) return true;
-        else return false;
+        if (findGuest.length > 0) {
+            return true;
+        } else return false;
     }
-    
+
     function handleLogIn(e) {
         e.preventDefault();
 

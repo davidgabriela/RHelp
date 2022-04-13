@@ -1,30 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Navbar from "../../Navbar/Navbar";
 import firebase from "../../firebase";
 import axios from "axios";
 import Card from "../../Card/Card";
 
-class Dashboard extends Component {
-    state = {
-        listings: [],
-    };
+export default function Dashboard() {
+    const [listings, setListings] = useState([]);
 
-    componentDidMount = () => {
-        this.getData();
-    };
-
-    checkUser = () => {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                console.log("Signed up", user.email);
-            } else {
-                console.log("No user", user);
-            }
-        });
-    };
-
-    getData = () => {
-        this.checkUser();
+    useEffect(() => {
+        let isMounted = true;
         axios
             .get("http://localhost:5000/api/v1/listings")
             .then((response) => {
@@ -35,16 +19,17 @@ class Dashboard extends Component {
                         item.owner_email === firebase.auth().currentUser.email
                 );
 
-                this.setState({ listings: filteredData });
-                console.log("Data has been received!");
-                console.log(filteredData);
+                if (isMounted) setListings(filteredData);
             })
             .catch(() => {
                 alert("Error retrieving data!");
             });
-    };
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
-    displayCard = (listings) => {
+    const displayCard = (listings) => {
         if (!listings.length) return null;
 
         return listings.map((item, index) => (
@@ -56,20 +41,14 @@ class Dashboard extends Component {
         ));
     };
 
-    render() {
-        return (
-            <div>
-                <Navbar role='host'></Navbar>
-                <div className='container-fluid d-flex justify-content-center'>
-                    <div className='row' id='courses'>
-                        <div className='col-md-4'>
-                            {this.displayCard(this.state.listings)}
-                        </div>
-                    </div>
+    return (
+        <div>
+            <Navbar role='host'></Navbar>
+            <div className='container-fluid d-flex justify-content-center'>
+                <div className='row' id='courses'>
+                    <div className='col-md-4'>{displayCard(listings)}</div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
-
-export default Dashboard;

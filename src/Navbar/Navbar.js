@@ -12,12 +12,6 @@ export default function BootstrapNavbar(props) {
     const { logout } = useAuth();
     const [error, setError] = useState("");
 
-    if (auth.currentUser != null) {
-        console.log("Logged in as", auth.currentUser.email);
-    } else {
-        console.log("Nobody logged in...");
-    }
-
     async function handleLogout() {
         try {
             await logout();

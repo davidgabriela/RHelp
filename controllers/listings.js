@@ -6,7 +6,6 @@ const Listing = require("../models/Listing");
 exports.getListings = async (req, res, next) => {
     try {
         const listings = await Listing.find();
-        console.log(listings[0]["name"]);
 
         res.status(200).json({
             success: true,

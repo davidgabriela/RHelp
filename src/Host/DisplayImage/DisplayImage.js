@@ -27,24 +27,6 @@ const UploadAndDisplayImage = (props) => {
                     props.onImgChange(base64);
                 }}
             />
-
-            {/* <input
-                type='text'
-                name='myImage'
-                onChange={(event) => {
-                    var file = event.target.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function (event) {
-                        // The file's text will be printed here
-                        console.log(file);
-                        //console.log(event.target.result);
-                        setSelectedImage(event.target.result);
-                        props.onImgChange(event.target.result);
-                    };
-
-                    reader.readAsDataURL(file);
-                }}
-            /> */}
         </div>
     );
 };
