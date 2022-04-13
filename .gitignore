@@ -7,7 +7,7 @@
 
 # environment variables
 /config/config.env
-.env
+/config/*.env
 
 # testing
 /coverage
