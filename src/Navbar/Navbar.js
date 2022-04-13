@@ -22,6 +22,7 @@ export default function BootstrapNavbar(props) {
 
     var authButton = (user) => {
         if (user != null) {
+            console.log("Logged in as", user.email);
             return (
                 <Nav.Item>
                     <Nav.Link href='/' onClick={handleLogout}>

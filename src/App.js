@@ -1,16 +1,21 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MainPage from "./MainPage/MainPage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./Auth/Login/Login";
 import Signup from "./Auth/SignUp/SignUp";
-import React from "react";
-import GuestDashboard from "./Guest/Dashboard/Dashboard";
-import HostDashboard from "./Host/Dashboard/Dashboard";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./contexts/AuthContexts";
+import { auth } from "./firebase";
+import GuestDashboard from "./Guest/Dashboard/Dashboard";
 import AddListing from "./Host/AddListing/AddListing";
+import HostDashboard from "./Host/Dashboard/Dashboard";
 import ListingPage from "./ListingPage/ListingPage";
+import MainPage from "./MainPage/MainPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
+    useEffect(() => {
+        return auth.signOut();
+    });
     return (
         <>
             <div className='align-items-center justify-content-center'>
@@ -25,22 +30,22 @@ function App() {
                                     path='/signup'
                                     component={Signup}
                                 />
-                                <Route
+                                <PrivateRoute
                                     exact
                                     path='/guestdash'
                                     component={GuestDashboard}
                                 />
-                                <Route
+                                <PrivateRoute
                                     exact
                                     path='/hostdash'
                                     component={HostDashboard}
                                 />
-                                <Route
+                                <PrivateRoute
                                     exact
                                     path='/addlisting'
                                     component={AddListing}
                                 />
-                                <Route
+                                <PrivateRoute
                                     exact
                                     path='/listingpage/:id'
                                     component={ListingPage}

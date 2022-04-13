@@ -1,40 +1,44 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import "./MainPage.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { auth } from "../firebase";
 import Navbar from "../Navbar/Navbar";
+import "./MainPage.css";
 
 class MainPage extends React.Component {
     render() {
-        return (
-            <>
-                <Container className='main-container'>
-                    <Row>
-                        <Navbar></Navbar>
-                    </Row>
-                    <Row className='main-row'>
-                        <Col lg={12} xl className='main-col main-map'></Col>
-                        <Col lg={12} xl className='main-col main-hero'>
-                            <div className='main-box'>
-                                <h1>Housing for refugees</h1>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Suspendisse malesuada id
-                                    nibh vel placerat. Pellentesque pulvinar
-                                    tempus lorem eu fringilla.{" "}
-                                </p>
-                                <Link to='/signup'>
-                                    <Button>Get Started</Button>
-                                </Link>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </>
-        );
+        if (auth.currentUser) {
+            return <Redirect to='/' replace />;
+        } else
+            return (
+                <>
+                    <Container className='main-container'>
+                        <Row>
+                            <Navbar></Navbar>
+                        </Row>
+                        <Row className='main-row'>
+                            <Col lg={12} xl className='main-col main-map'></Col>
+                            <Col lg={12} xl className='main-col main-hero'>
+                                <div className='main-box'>
+                                    <h1>Housing for refugees</h1>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Suspendisse malesuada
+                                        id nibh vel placerat. Pellentesque
+                                        pulvinar tempus lorem eu fringilla.{" "}
+                                    </p>
+                                    <Link to='/signup'>
+                                        <Button>Get Started</Button>
+                                    </Link>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </>
+            );
     }
 }
 

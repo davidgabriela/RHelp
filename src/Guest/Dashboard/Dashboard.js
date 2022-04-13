@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { Component } from "react";
 import Card from "../../Card/Card";
-import axios from "axios";
 import Navbar from "../../Navbar/Navbar";
+import SearchBar from "../../SearchBar/SearchBar";
 
 class Dashboard extends Component {
     state = {
@@ -43,6 +44,7 @@ class Dashboard extends Component {
                 <Navbar role='guest'></Navbar>
                 <div className='container-fluid d-flex justify-content-center'>
                     <div className='row' id='courses'>
+                        <SearchBar></SearchBar>
                         <div className='col-md-4'>
                             {this.displayCard(this.state.listings)}
                         </div>
