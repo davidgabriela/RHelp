@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
-import { Card, Form, Button, Alert } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContexts";
+import { Alert, Button, Card, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContexts";
 import "./SignUp.css";
 
 export default function SignUp() {
-    // const nameRef = useRef();
     const roleRef = useRef();
-    // const userRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();

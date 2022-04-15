@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./Auth/Login/Login";
 import Signup from "./Auth/SignUp/SignUp";
 import { AuthProvider } from "./contexts/AuthContexts";
-import { auth } from "./firebase";
 import GuestDashboard from "./Guest/Dashboard/Dashboard";
 import AddListing from "./Host/AddListing/AddListing";
 import HostDashboard from "./Host/Dashboard/Dashboard";
@@ -13,9 +12,9 @@ import MainPage from "./MainPage/MainPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
-    useEffect(() => {
-        return auth.signOut();
-    });
+    // useEffect(() => {
+    //     return auth.signOut();
+    // });
     return (
         <>
             <div className='align-items-center justify-content-center'>

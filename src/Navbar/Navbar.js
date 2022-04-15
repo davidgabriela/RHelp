@@ -41,7 +41,7 @@ export default function BootstrapNavbar(props) {
     };
 
     return (
-        <Navbar id='navbar-container' bg='dark' variant='dark' sticky='top'>
+        <Navbar id='navbar-container' bg='dark' variant='dark' fixed='top'>
             <Navbar.Brand href='/'>React-Bootstrap</Navbar.Brand>
             <Nav>
                 {props.role === "host" ? (

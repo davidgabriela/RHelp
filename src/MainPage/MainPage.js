@@ -16,9 +16,7 @@ class MainPage extends React.Component {
             return (
                 <>
                     <Container className='main-container'>
-                        <Row>
-                            <Navbar></Navbar>
-                        </Row>
+                        <Navbar></Navbar>
                         <Row className='main-row'>
                             <Col lg={12} xl className='main-col main-map'></Col>
                             <Col lg={12} xl className='main-col main-hero'>
