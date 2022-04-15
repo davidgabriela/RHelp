@@ -1,12 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
+import FilterModal from "../FilterModal/FilterModal";
 
 export default function SearchBar(props) {
     const locationRef = useRef();
     const checkInRef = useRef();
     const checkOutRef = useRef();
     const guestsRef = useRef();
+    const [modalShow, setModalShow] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,10 +54,18 @@ export default function SearchBar(props) {
                     </Form>
                 </Col>
                 <Col md={1}>
-                    <Button variant='outline-secondary' id='button-addon2'>
+                    <Button
+                        variant='outline-secondary'
+                        id='button-addon2'
+                        onClick={() => setModalShow(true)}
+                    >
                         Filter
                     </Button>
                 </Col>
+                <FilterModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                ></FilterModal>
             </Row>
         </>
     );
