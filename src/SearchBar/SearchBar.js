@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import FilterModal from "../FilterModal/FilterModal";
+import "./SearchBar.css";
 
 export default function SearchBar(props) {
     const locationRef = useRef();
@@ -17,8 +18,8 @@ export default function SearchBar(props) {
 
     return (
         <>
-            <Row>
-                <Col md={11}>
+            <div className='container'>
+                <Col md={8}>
                     <Form onSubmit={handleSubmit}>
                         <InputGroup className='mb-4'>
                             <FormControl
@@ -66,7 +67,7 @@ export default function SearchBar(props) {
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 ></FilterModal>
-            </Row>
+            </div>
         </>
     );
 }

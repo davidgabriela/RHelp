@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Row } from "react-bootstrap";
 import Card from "../../Card/Card";
 import Navbar from "../../Navbar/Navbar";
 import SearchBar from "../../SearchBar/SearchBar";
+import "./Dashboard.css";
 
 class Dashboard extends Component {
     state = {
@@ -63,13 +65,13 @@ class Dashboard extends Component {
         return (
             <div>
                 <Navbar role='guest'></Navbar>
-                <div className='container-fluid d-flex justify-content-center'>
-                    <div className='row' id='courses'>
+                <div className='container-fluid d-flex flex-container'>
+                    <Row>
                         <SearchBar handleSearch={this.handleSearch}></SearchBar>
-                        <div className='col-md-4'>
-                            {this.displayCard(this.state.filteredlistings)}
-                        </div>
-                    </div>
+                    </Row>
+                    <Row className='card_list'>
+                        {this.displayCard(this.state.filteredlistings)}
+                    </Row>
                 </div>
             </div>
         );

@@ -4,6 +4,7 @@ body{
 
 .card{
     margin-bottom: 30px;
+    width: 300px;
 }
 
 .card:hover{
@@ -33,5 +34,5 @@ body{
 }
 
 .card-img-top:hover{
-    transform: scale(1.8);
+    transform: scale(1.2);
 } 
