@@ -33,6 +33,7 @@ class Dashboard extends Component {
 
         return listings.map((item, index) => (
             <Card
+                key={index}
                 name={item.title}
                 phone={item.owner_email}
                 imgsrc={item.photo}
