@@ -6,6 +6,18 @@ export default function FilterModal(props) {
     const [amenities, setAmenities] = useState([]);
     const [aidingfacilities, setAidingfacilities] = useState([]);
 
+    const filterResults = () => {
+        props.filterData(typePlace, amenities, aidingfacilities);
+    };
+
+    const handleChange = (e, state, setter) => {
+        if (e.target.checked === true) {
+            setter([...state, e.target.value]);
+        } else {
+            setter(state.filter((item) => item !== e.target.value));
+        }
+    };
+
     return (
         <Modal
             {...props}
@@ -22,27 +34,59 @@ export default function FilterModal(props) {
                 <Form>
                     <Form.Group className='mb-4' controlId='formBasicCheckbox'>
                         <Form.Label>
-                            <spam>
+                            <span>
                                 <b>Type of place</b>
-                            </spam>
+                            </span>
                         </Form.Label>
                         <Row>
                             <Col>
                                 <Form.Check
+                                    value='Entire space'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            typePlace,
+                                            setTypePlace
+                                        );
+                                    }}
                                     type='checkbox'
-                                    label='Entire place'
+                                    label='Entire space'
                                 />
                                 <Form.Check
+                                    value='Hotel room'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            typePlace,
+                                            setTypePlace
+                                        );
+                                    }}
                                     type='checkbox'
                                     label='Hotel room'
                                 />
                             </Col>
                             <Col>
                                 <Form.Check
+                                    value='Private room'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            typePlace,
+                                            setTypePlace
+                                        );
+                                    }}
                                     type='checkbox'
                                     label='Private room'
                                 />
                                 <Form.Check
+                                    value='Shared room'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            typePlace,
+                                            setTypePlace
+                                        );
+                                    }}
                                     type='checkbox'
                                     label='Shared room'
                                 />
@@ -51,45 +95,156 @@ export default function FilterModal(props) {
                     </Form.Group>
                     <Form.Group className='mb-4' controlId='formBasicCheckbox'>
                         <Form.Label>
-                            <spam>
+                            <span>
                                 <b>Amenities</b>
-                            </spam>
+                            </span>
                         </Form.Label>
                         <Row>
                             <Col>
-                                <Form.Check type='checkbox' label='Kitchen' />
                                 <Form.Check
+                                    value='Kitchen'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Kitchen'
+                                />
+                                <Form.Check
+                                    value='Air conditioning'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
                                     type='checkbox'
                                     label='Air conditioning'
                                 />
-                                <Form.Check type='checkbox' label='Wi-fi' />
-                                <Form.Check type='checkbox' label='TV' />
+                                <Form.Check
+                                    value='Wi-fi'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Wi-fi'
+                                />
+                                <Form.Check
+                                    value='TV'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='TV'
+                                />
                             </Col>
                             <Col>
-                                <Form.Check type='checkbox' label='Washer' />
-                                <Form.Check type='checkbox' label='Iron' />
-                                <Form.Check type='checkbox' label='Dryer' />
+                                <Form.Check
+                                    value='Washer'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Washer'
+                                />
+                                <Form.Check
+                                    value='Iron'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Iron'
+                                />
+                                <Form.Check
+                                    value='Dryer'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Dryer'
+                                />
                             </Col>
                         </Row>
                     </Form.Group>
                     <Form.Group className='mb-4' controlId='formBasicCheckbox'>
                         <Form.Label>
-                            <spam>
+                            <span>
                                 <b>Aiding services</b>
-                            </spam>
+                            </span>
                         </Form.Label>
                         <Row>
                             <Col>
-                                <Form.Check type='checkbox' label='Kitchen' />
                                 <Form.Check
+                                    value='Medical care'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            aidingfacilities,
+                                            setAidingfacilities
+                                        );
+                                    }}
                                     type='checkbox'
                                     label='Medical care'
                                 />
+                                <Form.Check
+                                    value='Food'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            aidingfacilities,
+                                            setAidingfacilities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Food'
+                                />
                             </Col>
                             <Col>
-                                <Form.Check type='checkbox' label='Food' />
-                                <Form.Check type='checkbox' label='Transport' />
                                 <Form.Check
+                                    value='Transport'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            aidingfacilities,
+                                            setAidingfacilities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Transport'
+                                />
+                                <Form.Check
+                                    value='Psychological support'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            aidingfacilities,
+                                            setAidingfacilities
+                                        );
+                                    }}
                                     type='checkbox'
                                     label='Psychological support'
                                 />
@@ -99,7 +254,7 @@ export default function FilterModal(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button>Show results</Button>
+                <Button onClick={filterResults}>Show results</Button>
             </Modal.Footer>
         </Modal>
     );

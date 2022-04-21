@@ -30,6 +30,25 @@ class Dashboard extends Component {
             });
     };
 
+    filterData = (typePlace, amenities, aidingfacilities) => {
+        this.setState({
+            filteredlistings: this.state.listings.filter((item) => {
+                return (
+                    typePlace
+                        .toString()
+                        .toLowerCase()
+                        .includes(item.type_space.toLowerCase()) ||
+                    amenities.some((r) =>
+                        item.additional_facilities.includes(r)
+                    ) ||
+                    aidingfacilities.some((r) =>
+                        item.extra_services.includes(r)
+                    )
+                );
+            }),
+        });
+    };
+
     displayCard = (listings) => {
         if (!listings.length) return null;
 
@@ -48,7 +67,7 @@ class Dashboard extends Component {
         this.setState({
             filteredlistings: this.state.listings.filter((item) => {
                 return (
-                    item.address
+                    item.location.formattedAddress
                         .toString()
                         .toLowerCase()
                         .includes(location.toString().toLowerCase()) &&
@@ -67,7 +86,10 @@ class Dashboard extends Component {
                 <Navbar role='guest'></Navbar>
                 <div className='container-fluid d-flex flex-container'>
                     <Row>
-                        <SearchBar handleSearch={this.handleSearch}></SearchBar>
+                        <SearchBar
+                            filterData={this.filterData}
+                            handleSearch={this.handleSearch}
+                        ></SearchBar>
                     </Row>
                     <Row className='card_list'>
                         {this.displayCard(this.state.filteredlistings)}

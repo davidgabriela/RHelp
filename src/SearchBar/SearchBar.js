@@ -64,6 +64,7 @@ export default function SearchBar(props) {
                     </Button>
                 </Col>
                 <FilterModal
+                    filterData={props.filterData}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 ></FilterModal>

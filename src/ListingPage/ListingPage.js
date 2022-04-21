@@ -1,12 +1,12 @@
+import axios from "axios";
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import MyMap from "../Map/Map";
 import Navbar from "../Navbar/Navbar";
 import "./ListingPage.css";
-import MyMap from "../Map/Map";
-import axios from "axios";
 
 class ListingPage extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class ListingPage extends React.Component {
             owner_email: "",
             title: "",
             description: "",
-            address: "",
+            location: "",
             accomodation_type: "",
             type_space: "",
             number_bedrooms: "",
@@ -37,7 +37,7 @@ class ListingPage extends React.Component {
                     owner_email: response.data.data.owner_email,
                     title: response.data.data.title,
                     description: response.data.data.description,
-                    address: response.data.data.address,
+                    location: response.data.data.location,
                     accomodation_type: response.data.data.accomodation_type,
                     type_space: response.data.data.type_space,
                     number_bedrooms: response.data.data.number_bedrooms,
@@ -82,8 +82,10 @@ class ListingPage extends React.Component {
                                 }
                                 <Button>Reserve</Button>
                             </div>
+                            <MyMap
+                                position={this.state.location.coordinates}
+                            ></MyMap>
                         </Col>
-                        <MyMap></MyMap>
                     </Row>
                 </Container>
             </>
