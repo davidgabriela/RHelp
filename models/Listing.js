@@ -55,9 +55,6 @@ const ListingSchema = new mongoose.Schema({
     number_bedrooms: {
         type: String,
     },
-    safety_items: {
-        type: [String],
-    },
     extra_services: {
         type: [String],
     },

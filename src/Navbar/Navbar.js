@@ -42,7 +42,7 @@ export default function BootstrapNavbar(props) {
 
     return (
         <Navbar id='navbar-container' bg='dark' variant='dark' fixed='top'>
-            <Navbar.Brand href='/'>React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href='/'>RHelp</Navbar.Brand>
             <Nav>
                 {props.role === "host" ? (
                     <Nav.Item>

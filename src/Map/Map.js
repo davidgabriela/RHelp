@@ -18,7 +18,7 @@ function MyMap(props) {
         return (
             <MapContainer
                 center={position}
-                zoom={12}
+                zoom={16}
                 scrollWheelZoom={false}
                 style={{ height: 800, width: "100%" }}
             >

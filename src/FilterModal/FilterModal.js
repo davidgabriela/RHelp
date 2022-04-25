@@ -93,6 +93,9 @@ export default function FilterModal(props) {
                             </Col>
                         </Row>
                     </Form.Group>
+                    {/* <Row>
+
+                    </Row> */}
                     <Form.Group className='mb-4' controlId='formBasicCheckbox'>
                         <Form.Label>
                             <span>
@@ -186,6 +189,18 @@ export default function FilterModal(props) {
                                     }}
                                     type='checkbox'
                                     label='Dryer'
+                                />
+                                <Form.Check
+                                    value='Pool'
+                                    onChange={(event) => {
+                                        handleChange(
+                                            event,
+                                            amenities,
+                                            setAmenities
+                                        );
+                                    }}
+                                    type='checkbox'
+                                    label='Pool'
                                 />
                             </Col>
                         </Row>

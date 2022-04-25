@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Spinner } from "react-bootstrap";
 import Card from "../../Card/Card";
 import Navbar from "../../Navbar/Navbar";
 import SearchBar from "../../SearchBar/SearchBar";
@@ -10,9 +10,11 @@ class Dashboard extends Component {
     state = {
         listings: [],
         filteredlistings: [],
+        showSpinner: true,
     };
 
     componentDidMount = () => {
+        this.setState({ showSpinner: true });
         this.getData();
     };
 
@@ -24,6 +26,7 @@ class Dashboard extends Component {
                 const data = response.data.data;
                 this.setState({ listings: data, filteredlistings: data });
                 console.log("Recv data");
+                this.setState({ showSpinner: false });
             })
             .catch(() => {
                 alert("Error retrieving data!");
@@ -63,6 +66,16 @@ class Dashboard extends Component {
         ));
     };
 
+    displaySpinner = () => {
+        if (this.state.showSpinner)
+            return (
+                <Spinner animation='border' role='status' variant='primary'>
+                    <span className='visually-hidden'>Loading...</span>
+                </Spinner>
+            );
+        else return <div></div>;
+    };
+
     handleSearch = (location, guests) => {
         this.setState({
             filteredlistings: this.state.listings.filter((item) => {
@@ -92,6 +105,7 @@ class Dashboard extends Component {
                         ></SearchBar>
                     </Row>
                     <Row className='card_list'>
+                        {this.displaySpinner()}
                         {this.displayCard(this.state.filteredlistings)}
                     </Row>
                 </div>

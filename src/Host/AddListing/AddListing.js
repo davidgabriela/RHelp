@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import DisplayImage from "../DisplayImage/DisplayImage";
 
@@ -71,7 +70,6 @@ export default function AddListing() {
             type_space: typeofspace.current.value,
             number_guests: noofguests.current.value,
             number_bedrooms: noofbed.current.value,
-            safety_items: safetyItems,
             extra_services: extraServices,
             additional_facilities: addfacilities,
             photo: photoUrl,
@@ -230,10 +228,6 @@ export default function AddListing() {
                     </Form>
                 </Card.Body>
             </Card>
-
-            <div className='w-100 text-center mt-2' id='login-check'>
-                Already have an account? <Link to='/login'>Log In</Link>
-            </div>
         </>
     );
 }
