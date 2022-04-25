@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -8,6 +9,24 @@ import Navbar from "../Navbar/Navbar";
 import "./MainPage.css";
 
 class MainPage extends React.Component {
+    checkUserRole(user) {
+        const email = user.email;
+        axios
+            .get("http://localhost:5000/api/v1/guests")
+            .then((response) => {
+                const data = response.data.data;
+                const findGuest = data.filter((item) => {
+                    return item.email === email;
+                });
+                if (findGuest.length > 0) {
+                    return "guest";
+                } else return "host";
+            })
+            .catch(() => {
+                alert("Error retrieving guests!");
+            });
+    }
+
     render() {
         // if (auth.currentUser) {
         //     console.log("auth", auth.currentUser);
