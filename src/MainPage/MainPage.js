@@ -1,37 +1,41 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { auth } from "../firebase";
 import Navbar from "../Navbar/Navbar";
 import "./MainPage.css";
 
-class MainPage extends React.Component {
-    checkUserRole(user) {
-        const email = user.email;
-        axios
-            .get("http://localhost:5000/api/v1/guests")
-            .then((response) => {
-                const data = response.data.data;
-                const findGuest = data.filter((item) => {
-                    return item.email === email;
-                });
-                if (findGuest.length > 0) {
-                    return "guest";
-                } else return "host";
-            })
-            .catch(() => {
-                alert("Error retrieving guests!");
-            });
-    }
+export default function MainPage() {
+    const [role, setRole] = useState("/");
 
-    render() {
-        // if (auth.currentUser) {
-        //     console.log("auth", auth.currentUser);
-        //     return <Redirect to='/' replace />;
-        // } else
+    useEffect(() => {
+        if (auth.currentUser) {
+            const email = auth.currentUser.email;
+            axios
+                .get("http://localhost:5000/api/v1/guests")
+                .then((response) => {
+                    const data = response.data.data;
+                    const findGuest = data.filter((item) => {
+                        return item.email === email;
+                    });
+                    if (findGuest.length > 0) {
+                        setRole("/guestdash");
+                    } else setRole("/hostdash");
+                })
+                .catch(() => {
+                    alert("Error checking user role!");
+                });
+        }
+    }, []);
+
+    if (auth.currentUser) {
+        console.log("Logged in as...", auth.currentUser.email);
+        return <Redirect to={role} replace />;
+    } else
         return (
             <>
                 <Container className='main-container'>
@@ -56,7 +60,4 @@ class MainPage extends React.Component {
                 </Container>
             </>
         );
-    }
 }
-
-export default MainPage;
