@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./Auth/Login/Login";
+import PassReset from "./Auth/Login/Reset";
 import Signup from "./Auth/SignUp/SignUp";
 import { AuthProvider } from "./contexts/AuthContexts";
 import GuestDashboard from "./Guest/Dashboard/Dashboard";
@@ -24,6 +25,11 @@ function App() {
                             <Switch>
                                 <Route exact path='/' component={MainPage} />
                                 <Route exact path='/login' component={Login} />
+                                <Route
+                                    exact
+                                    path='/resetpawssord'
+                                    component={PassReset}
+                                />
                                 <Route
                                     exact
                                     path='/signup'

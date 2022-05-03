@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
 
 const AuthContext = React.createContext();
@@ -23,6 +23,12 @@ export function AuthProvider({ children }) {
         return auth.signOut();
     }
 
+    function ForgotPaswword(email) {
+        return auth.sendPasswordResetEmail(email, {
+            url: "http://localhost:3000/login",
+        });
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -37,6 +43,7 @@ export function AuthProvider({ children }) {
         signup,
         login,
         logout,
+        ForgotPaswword,
     };
 
     return (

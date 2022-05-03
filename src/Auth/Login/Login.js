@@ -1,7 +1,7 @@
-import { Link, useHistory } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
-import { Card, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { Alert, Button, Card, Form } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 import "./Login.css";
 
@@ -101,6 +101,9 @@ export default function Login() {
 
             <div className='w-100 text-center mt-2'>
                 Need an account? <Link to='/signup'>Sign Up</Link>
+            </div>
+            <div className='w-100 text-center mt-2'>
+                Forgot password? <Link to='/resetpawssord'>Reset</Link>
             </div>
         </>
     );
