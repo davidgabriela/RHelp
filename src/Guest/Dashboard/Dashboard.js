@@ -97,7 +97,7 @@ class Dashboard extends Component {
         return (
             <div>
                 <Navbar role='guest'></Navbar>
-                <div className='container-fluid d-flex flex-container'>
+                <div className='container-fluid d-flex justify-content-center'>
                     <Row>
                         <SearchBar
                             filterData={this.filterData}
