@@ -24,12 +24,15 @@ class Dashboard extends Component {
             .get("http://localhost:5000/api/v1/listings")
             .then((response) => {
                 const data = response.data.data;
-                this.setState({ listings: data, filteredlistings: data });
-                console.log("Recv data");
+                const unrentedListings = data.filter(item => {
+                    console.log("Rented? ", item.rented)
+                    return !item.rented
+                })
+                this.setState({ listings: unrentedListings, filteredlistings: unrentedListings });
                 this.setState({ showSpinner: false });
             })
             .catch(() => {
-                alert("Error retrieving data!");
+                alert("Error retrieving listings!");
             });
     };
 
