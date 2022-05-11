@@ -17,6 +17,7 @@ connectDB();
 const listings = require("./routes/listings");
 const hosts = require("./routes/hosts");
 const guests = require("./routes/guests");
+const reservations = require("./routes/reservations");
 
 const app = express();
 app.use(express.json({ limit: "30mb", extended: true }));
@@ -36,6 +37,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/listings", listings);
 app.use("/api/v1/hosts", hosts);
 app.use("/api/v1/guests", guests);
+app.use("/api/v1/reservation", reservations);
 var multer = require("multer");
 
 var storage = multer.diskStorage({

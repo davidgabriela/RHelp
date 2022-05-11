@@ -69,6 +69,10 @@ const ListingSchema = new mongoose.Schema({
         min: [1, "Rating must be at least 1"],
         max: [10, "Rating cannot be more than 10"],
     },
+    rented: {
+        type: Boolean,
+        default: false
+    }
 });
 
 // Geocode & create location field

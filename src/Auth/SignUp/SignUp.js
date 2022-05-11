@@ -20,7 +20,7 @@ export default function SignUp() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: emailRef.current.value }),
         };
-
+        console.log(roleRef.current.value.toLowerCase());
         fetch(
             `http://localhost:5000/api/v1/${
                 roleRef.current.value.toLowerCase() + "s"

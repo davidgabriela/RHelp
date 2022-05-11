@@ -13,9 +13,6 @@ import MainPage from "./MainPage/MainPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
-    // useEffect(() => {
-    //     return auth.signOut();
-    // });
     return (
         <>
             <div className='align-items-center justify-content-center'>

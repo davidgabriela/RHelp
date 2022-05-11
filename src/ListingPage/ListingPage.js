@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import firebase from "../firebase";
 import MyMap from "../Map/Map";
 import Navbar from "../Navbar/Navbar";
 import "./ListingPage.css";
@@ -25,7 +26,9 @@ class ListingPage extends React.Component {
             additional_facilities: [],
             photo: "",
             averageRating: 0,
+            listing_id: ''
         };
+        this.makeReservation = this.makeReservation.bind(this)
     }
 
     componentDidMount() {
@@ -46,11 +49,51 @@ class ListingPage extends React.Component {
                     additional_facilities:
                         response.data.data.additional_facilities,
                     photo: response.data.data.photo,
+                    listing_id: this.props.match.params.id
                 });
             })
             .catch(() => {
                 alert("Error retrieving guests!");
             });
+    }
+
+    makeReservation() {
+        axios
+            .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`,
+            {
+                "rented": true
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(() => {
+                alert("Error updating listing rented boolean!");
+            });
+        firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+            const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': idToken
+            }
+            console.log("heder? ...", headers['Authorization'])
+            axios
+                .post("http://localhost:5000/api/v1/reservation",
+                {
+                    "email": firebase.auth().currentUser.email
+                },
+                {
+                    headers: headers
+                })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch(() => {
+                    alert("Error sending email!");
+                });
+        }).catch(function(error) {
+            console.log('Error sending token: ', error)
+        });
+
+        
     }
 
     render() {
@@ -80,7 +123,9 @@ class ListingPage extends React.Component {
                                         pulvinar tempus lorem eu fringilla.{" "}
                                     </p>
                                 }
-                                <Button>Reserve</Button>
+                                <Button onClick={this.makeReservation}>
+                                    Reserve
+                                </Button>
                             </div>
                             <MyMap
                                 position={this.state.location.coordinates}
