@@ -1,7 +1,6 @@
 const sendEmail = require("../utils/sendEmail");
 const admin = require("firebase-admin");
 const serviceAccount = require("../config/serviceAccountKey.json");
-const { getAuth } = require("firebase-admin/auth")
 
 // @desc    Make reservation
 // @route   POST /api/v1/reservation
