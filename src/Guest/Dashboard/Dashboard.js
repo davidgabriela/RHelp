@@ -32,7 +32,7 @@ class Dashboard extends Component {
                 this.setState({ showSpinner: false });
             })
             .catch(() => {
-                alert("Error retrieving listings!");
+                console.log("Error retrieving listings!");
             });
     };
 

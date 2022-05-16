@@ -26,7 +26,7 @@ export default function Dashboard() {
                 setShowSpinner(false);
             })
             .catch(() => {
-                alert("Error retrieving data!");
+                console.log("Error retrieving data!");
             });
         return () => {
             isMounted = false;

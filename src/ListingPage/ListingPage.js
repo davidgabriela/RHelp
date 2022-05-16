@@ -53,7 +53,7 @@ class ListingPage extends React.Component {
                 });
             })
             .catch(() => {
-                alert("Error retrieving guests!");
+                console.log("Error retrieving guests!");
             });
     }
 
@@ -67,7 +67,7 @@ class ListingPage extends React.Component {
                 console.log(response);
             })
             .catch(() => {
-                alert("Error updating listing rented boolean!");
+                console.log("Error updating listing rented boolean!");
             });
         firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
             const headers = {
@@ -87,7 +87,7 @@ class ListingPage extends React.Component {
                     console.log(response);
                 })
                 .catch(() => {
-                    alert("Error sending email!");
+                    console.log("Error sending email!");
                 });
         }).catch(function(error) {
             console.log('Error sending token: ', error)

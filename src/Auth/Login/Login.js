@@ -21,7 +21,7 @@ export default function Login() {
                 setData(response.data.data);
             })
             .catch(() => {
-                alert("Error retrieving guests!");
+                console.log("Error retrieving guests!");
             });
     }, []);
 

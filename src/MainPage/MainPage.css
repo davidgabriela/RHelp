@@ -17,16 +17,15 @@
     width: 100%;
 }
 
-.main-col {
-    background-color: aquamarine;
-}
-
-.main-map {
-    background-color:gainsboro;
+.main-map{
+    background-color: #000;
+    background: linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(0, 22, 69, 0.4)), url('../assets/flag_ukraine.webp');
+    background-size: cover;
 }
 
 .main-hero {
-    background-color: dimgrey;
+    background-color: rgb(46, 51, 56);
+    color: white;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
