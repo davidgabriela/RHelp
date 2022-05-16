@@ -55,23 +55,21 @@ const ListingSchema = new mongoose.Schema({
     number_bedrooms: {
         type: String,
     },
+    safety_items: {
+        type: [String],
+    },
     extra_services: {
         type: [String],
     },
     additional_facilities: {
         type: [String],
     },
-    photo: {
-        type: String,
-    },
-    averageRating: {
-        type: Number,
-        min: [1, "Rating must be at least 1"],
-        max: [10, "Rating cannot be more than 10"],
-    },
     rented: {
         type: Boolean,
         default: false
+    },
+    photo: {
+        type: String,
     }
 });
 
