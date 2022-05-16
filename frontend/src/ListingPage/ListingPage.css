@@ -5,6 +5,30 @@
     align-content: center;
 }
 
-.main-container {
+.row {
+    --bs-gutter-x: 0;
+    --bs-gutter-x: 0;
+}
+
+.listing-page-container {
     margin-top: 70px;
+    padding: 20px;
+}
+
+.listing-page-container h1{
+    padding: 0;
+    margin: 20px 0 60px;
+}
+
+.listing-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.listing-photo img{
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
 }

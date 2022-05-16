@@ -28,18 +28,6 @@ export default function SearchBar(props) {
                                 ref={locationRef}
                             />
                             <FormControl
-                                placeholder='Check-in'
-                                type='date'
-                                name='Check-in'
-                                ref={checkInRef}
-                            />
-                            <FormControl
-                                placeholder='Check-out'
-                                type='date'
-                                name='Check-out'
-                                ref={checkOutRef}
-                            />
-                            <FormControl
                                 placeholder='Guests'
                                 aria-label='Guests'
                                 ref={guestsRef}

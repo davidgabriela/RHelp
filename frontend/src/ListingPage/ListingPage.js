@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import firebase from "../firebase";
 import MyMap from "../Map/Map";
@@ -92,48 +91,45 @@ class ListingPage extends React.Component {
         }).catch(function(error) {
             console.log('Error sending token: ', error)
         });
-
-        
     }
 
     render() {
         return (
-            <>
-                <Container className='main-container'>
-                    <Row>
-                        <Navbar></Navbar>
-                    </Row>
-                    <Row className='main-row'>
-                        <Col lg={12} xl className='main-col main-map'>
-                            <h1>{this.state.title}</h1>
-                            <div className='main-box'>
-                                <img
-                                    src={this.state.photo}
-                                    alt=''
-                                    height='500px'
-                                ></img>
-                            </div>
-                            <h1>Description</h1>
-                            <div className='main-box'>
-                                {
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Suspendisse malesuada
-                                        id nibh vel placerat. Pellentesque
-                                        pulvinar tempus lorem eu fringilla.{" "}
-                                    </p>
-                                }
-                                <Button onClick={this.makeReservation}>
-                                    Reserve
-                                </Button>
-                            </div>
-                            <MyMap
-                                position={this.state.location.coordinates}
-                            ></MyMap>
-                        </Col>
-                    </Row>
-                </Container>
-            </>
+            <div className="listing-page-container">
+                <Navbar></Navbar>
+                <h1>{this.state.title}</h1>
+                <Row>
+                    <Col>
+                        <div className="listing-photo">
+                            <img
+                                src={this.state.photo}
+                                alt='listing'
+                            ></img>
+                        </div>
+                    </Col>
+                    <Col>
+                        <MyMap 
+                            position={this.state.location.coordinates}
+                        ></MyMap>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <h1>Description</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit. Suspendisse malesuada
+                            id nibh vel placerat. Pellentesque
+                            pulvinar tempus lorem eu fringilla.{" "}
+                        </p>
+                    </Col>
+                    <Col>
+                        <Button onClick={this.makeReservation}>
+                            Reserve
+                        </Button>
+                    </Col>
+                </Row>
+            </div>
         );
     }
 }
