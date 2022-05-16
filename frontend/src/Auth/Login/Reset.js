@@ -19,30 +19,30 @@ export default function Reset() {
         setLoading(false);
     }
     return (
-        <>
-            <Card id='card-container-login'>
-                <Card.Body>
-                    <h2 className='text-center mb-4'>Reset Password</h2>
-                    <Form onSubmit={handleReset}>
-                        <Form.Group id='email'>
-                            <Form.Label>Type in your email</Form.Label>
-                            <Form.Control
-                                type='email'
-                                ref={emailRef}
-                                required
-                            />
-                        </Form.Group>
-                        <Button
-                            disabled={loading}
-                            className='w-100 auth-button'
-                            type='submit'
-                            style={{ backgroundColor: "#343a40" }}
-                        >
-                            Send Email to recover password
-                        </Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-        </>
+        <div className="page-container">
+            <div className="login-container">
+                <Card id='card-container-login'>
+                    <Card.Body className="card-body">
+                        <h2 className='text-center mb-4'>Reset Password</h2>
+                        <Form className="form-container" onSubmit={handleReset}>
+                            <Form.Group id='credentials'>
+                                <Form.Label>Recovery email</Form.Label>
+                                <Form.Control
+                                    type='email'
+                                    ref={emailRef}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button
+                                variant="primary"
+                                type='submit'
+                            >
+                                Send Email to recover password
+                            </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+            </div>
+        </div>
     );
 }

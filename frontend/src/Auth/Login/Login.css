@@ -1,10 +1,17 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    height: 60vh;
 }
 
 .card-body {
@@ -18,18 +25,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 200px;
     justify-content: space-between;
     align-items: center;
 }
 
 .form-container #credentials{
+    padding-bottom: 30px;
     width: 100%;
 }
 
 #card-container-login {
     width: 40%;
-    height: 40%;
     padding: 0 2rem;
     margin-top: 40px;
 }

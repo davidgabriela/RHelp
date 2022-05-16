@@ -54,65 +54,57 @@ export default function SignUp() {
     }
 
     return (
-        <>
-            <Card id='card-container-signup'>
-                <Card.Body>
-                    <h2 className='text-center mb-4'>Sign Up</h2>
-                    {error && <Alert variant='danger'>{error}</Alert>}
+        <div className="page-container">
+            <div className="login-container">
+                <Card id='card-container-login'>
+                    <Card.Body className="card-body">
+                        <h2 className='text-center mb-4'>Sign Up</h2>
+                        {error && <Alert variant='danger'>{error}</Alert>}
 
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id='email'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type='email'
-                                ref={emailRef}
-                                required
-                            />
-                        </Form.Group>
+                        <Form className="form-container" onSubmit={handleSubmit}>
+                            <Form.Group id='credentials'>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type='email'
+                                    ref={emailRef}
+                                    required
+                                />
 
-                        <Form.Group id='group'>
-                            <Form.Label>Role</Form.Label>
-                            <Form.Select ref={roleRef} required>
-                                <option>Host</option>
-                                <option>Guest</option>
-                            </Form.Select>
-                        </Form.Group>
+                                <Form.Label>Role</Form.Label>
+                                <Form.Select ref={roleRef} required>
+                                    <option>Host</option>
+                                    <option>Guest</option>
+                                </Form.Select>
 
-                        <Form.Group id='password'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type='password'
-                                ref={passwordRef}
-                                required
-                            />
-                        </Form.Group>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    ref={passwordRef}
+                                    required
+                                />
 
-                        <Form.Group
-                            id='password-confirm'
-                            style={{ marginBottom: "20px" }}
-                        >
-                            <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control
-                                type='password'
-                                ref={passwordConfirmRef}
-                                required
-                            />
-                        </Form.Group>
+                                <Form.Label>Password Confirmation</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    ref={passwordConfirmRef}
+                                    required
+                                />
+                            </Form.Group>
 
-                        <Button
-                            disabled={loading}
-                            className='w-100 auth-button'
-                            type='submit'
-                        >
-                            Sign Up
-                        </Button>
-                    </Form>
-                </Card.Body>
-            </Card>
+                            <Button
+                                variant="primary"
+                                type='submit'
+                            >
+                                Sign Up
+                            </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
 
-            <div className='w-100 text-center mt-2' id='login-check'>
-                Already have an account? <Link to='/login'>Log In</Link>
+                <div className='w-100 text-center mt-2' id='login-check'>
+                    Already have an account? <Link to='/login'>Log In</Link>
+                </div>
             </div>
-        </>
+        </div>
     );
 }
