@@ -1,4 +1,14 @@
 #navbar-container {
+    padding: 0.5rem 1.5rem;
     justify-content: space-between;
     width: 100%;
+}
+
+.navbar-dark .navbar-brand {
+    font-size: 150%;
+}
+
+.navbar-dark .navbar-brand:hover {
+    font-size: 150%;
+    color: rgb(255, 238, 0);
 }

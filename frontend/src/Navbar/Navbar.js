@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Navbar } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import Nav from "react-bootstrap/Nav";
 import { useAuth } from "../contexts/AuthContexts";
 import { auth } from "../firebase";
@@ -53,24 +51,6 @@ export default function BootstrapNavbar(props) {
                 ) : (
                     <div></div>
                 )}
-                <Nav.Item>
-                    <Nav.Link href=''>
-                        <DropdownButton
-                            id='dropdown-basic-button'
-                            title='English'
-                        >
-                            <Dropdown.Item href='#/action-1'>
-                                French
-                            </Dropdown.Item>
-                            <Dropdown.Item href='#/action-2'>
-                                German
-                            </Dropdown.Item>
-                            <Dropdown.Item href='#/action-3'>
-                                Italian
-                            </Dropdown.Item>
-                        </DropdownButton>
-                    </Nav.Link>
-                </Nav.Item>
                 <Nav.Item>
                     <Nav.Link>
                         <Button variant='outline-light'>FAQ</Button>

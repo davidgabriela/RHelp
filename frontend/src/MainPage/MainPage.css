@@ -3,6 +3,13 @@
     color: white;
 }
 
+.btn:hover{
+    background-color: rgb(255, 238, 0);
+    color: #000;
+    border-color: rgb(255, 238, 0);
+
+}
+
 .main-container {
     min-width: 100%;
     max-width: 100%;

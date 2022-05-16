@@ -101,13 +101,12 @@ class Dashboard extends Component {
             <div>
                 <Navbar role='guest'></Navbar>
                 <div className='container-fluid d-flex justify-content-center'>
-                    <Row>
+                    <Row className='card_list'>
                         <SearchBar
                             filterData={this.filterData}
                             handleSearch={this.handleSearch}
                         ></SearchBar>
-                    </Row>
-                    <Row className='card_list'>
+
                         {this.displaySpinner()}
                         {this.displayCard(this.state.filteredlistings)}
                     </Row>

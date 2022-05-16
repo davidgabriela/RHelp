@@ -59,26 +59,20 @@ export default function Login() {
     }
 
     return (
-        <>
+        <div className="login-container">
             <Card id='card-container-login'>
-                <Card.Body>
+                <Card.Body className="card-body">
                     <h2 className='text-center mb-4'>Login</h2>
                     {error && <Alert variant='danger'>{error}</Alert>}
 
-                    <Form onSubmit={handleLogIn}>
-                        <Form.Group id='email'>
+                    <Form className="form-container" onSubmit={handleLogIn}>
+                        <Form.Group id='credentials'>
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 type='email'
                                 ref={emailRef}
                                 required
                             />
-                        </Form.Group>
-
-                        <Form.Group
-                            id='password'
-                            style={{ marginBottom: "20px" }}
-                        >
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type='password'
@@ -88,10 +82,8 @@ export default function Login() {
                         </Form.Group>
 
                         <Button
-                            disabled={loading}
-                            className='w-100 auth-button'
+                            variant="primary"
                             type='submit'
-                            style={{ backgroundColor: "#343a40" }}
                         >
                             Login
                         </Button>
@@ -105,6 +97,6 @@ export default function Login() {
             <div className='w-100 text-center mt-2'>
                 Forgot password? <Link to='/resetpawssord'>Reset</Link>
             </div>
-        </>
+        </div>
     );
 }
