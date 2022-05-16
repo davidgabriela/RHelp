@@ -27,7 +27,7 @@ export default function MainPage() {
                     } else setRole("/hostdash");
                 })
                 .catch(() => {
-                    alert("Error checking user role!");
+                    console.log("Error checking user role!");
                 });
         }
     }, []);
@@ -41,7 +41,8 @@ export default function MainPage() {
                 <Container className='main-container'>
                     <Navbar></Navbar>
                     <Row className='main-row'>
-                        <Col lg={12} xl className='main-col main-map'></Col>
+                        <Col lg={12} xl className='main-col main-map'>
+                        </Col>
                         <Col lg={12} xl className='main-col main-hero'>
                             <div className='main-box'>
                                 <h1>Housing for refugees</h1>
