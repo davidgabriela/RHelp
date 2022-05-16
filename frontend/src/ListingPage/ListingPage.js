@@ -99,7 +99,7 @@ class ListingPage extends React.Component {
                 <Navbar></Navbar>
                 <h1>{this.state.title}</h1>
                 <Row>
-                    <Col>
+                    <Col >
                         <div className="listing-photo">
                             <img
                                 src={this.state.photo}
@@ -124,9 +124,16 @@ class ListingPage extends React.Component {
                         </p>
                     </Col>
                     <Col>
+                    <div className='reservation_card text-center shadow'>
+                        <div className='card-body text-dark'>
+                        <h4 className='card-title'>Reserve</h4>
+                        <p className='card-text text-secondary'>Make a reservation today!</p>
                         <Button onClick={this.makeReservation}>
                             Reserve
                         </Button>
+                    </div>
+                    </div>
+                       
                     </Col>
                 </Row>
             </div>
