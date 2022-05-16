@@ -8,16 +8,12 @@ const UploadAndDisplayImage = (props) => {
         <div>
             {selectedImage && (
                 <div>
-                    <img alt='not fount' width={"250px"} src={selectedImage} />
-                    <br />
+                    <img alt='not fount' width={"400px"} src={selectedImage} />
                     <button onClick={() => setSelectedImage(null)}>
                         Remove
                     </button>
                 </div>
             )}
-            <br />
-
-            <br />
 
             <FileBase64
                 type='file'

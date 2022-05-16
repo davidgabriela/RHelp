@@ -9,6 +9,10 @@ const ListingSchema = new mongoose.Schema({
             "Please add a valid email",
         ],
     },
+
+    owner_phone: {
+        type: String,
+    },
     title: {
         type: String,
         required: [true, "Please add a title"],

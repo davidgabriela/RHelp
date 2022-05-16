@@ -6,6 +6,7 @@ import DisplayImage from "../DisplayImage/DisplayImage";
 export default function AddListing() {
     const listingTitle = useRef();
     const fullAdress = useRef();
+    const phoneNumber = useRef();
     const accomodationType = useRef();
     const typeofspace = useRef();
     const description = useRef();
@@ -63,6 +64,7 @@ export default function AddListing() {
         e.preventDefault();
         const req_body = {
             owner_email: firebase.auth().currentUser.email,
+            owner_phone: phoneNumber.current.value,
             title: listingTitle.current.value,
             description: description.current.value,
             address: fullAdress.current.value,
@@ -98,51 +100,42 @@ export default function AddListing() {
                                 ref={listingTitle}
                                 required
                             />
-                        </Form.Group>
 
-                        <Form.Group
-                            id='fullAdress'
-                            style={{ marginBottom: "20px" }}
-                        >
                             <Form.Label>Full Adress</Form.Label>
                             <Form.Control
                                 type='fullAdress'
                                 ref={fullAdress}
                                 required
                             />
-                        </Form.Group>
 
-                        <Form.Group
-                            id='description'
-                            style={{ marginBottom: "20px" }}
-                        >
+                            <Form.Label>Contact Phone Number</Form.Label>
+                            <Form.Control
+                                type='phoneNumber'
+                                ref={phoneNumber}
+                                required
+                            />
+                        
                             <Form.Label>Description</Form.Label>
                             <Form.Control
                                 type='fullAdress'
                                 ref={description}
                                 required
                             />
-                        </Form.Group>
-
-                        <Form.Group id='accomodation'>
+                        
                             <Form.Label>Accomodation Type</Form.Label>
                             <Form.Select ref={accomodationType} required>
                                 <option>Apartment</option>
                                 <option>House</option>
                                 <option>Unique space</option>
                             </Form.Select>
-                        </Form.Group>
-
-                        <Form.Group id='group'>
+                        
                             <Form.Label>Type of space</Form.Label>
                             <Form.Select ref={typeofspace} required>
                                 <option>Entire space</option>
                                 <option>Private room</option>
                                 <option>Shared Room</option>
                             </Form.Select>
-                        </Form.Group>
-
-                        <Form.Group id='accomodation'>
+                        
                             <Form.Label>Number of guests</Form.Label>
                             <Form.Control
                                 type='text'
@@ -150,9 +143,7 @@ export default function AddListing() {
                                 ref={noofguests}
                                 required
                             />
-                        </Form.Group>
-
-                        <Form.Group id='accomodation'>
+                        
                             <Form.Label>Number of bedrooms</Form.Label>
                             <Form.Control
                                 type='text'
@@ -160,9 +151,7 @@ export default function AddListing() {
                                 ref={noofbed}
                                 required
                             />
-                        </Form.Group>
-
-                        <Form.Group id='safetyItems'>
+                        
                             <Form.Label>Safety items</Form.Label>
                             <Form.Select
                                 multiple={true}
@@ -180,9 +169,7 @@ export default function AddListing() {
                                     Smoke alarm
                                 </option>
                             </Form.Select>
-                        </Form.Group>
-
-                        <Form.Group id='extraService'>
+                        
                             <Form.Label>Extra services</Form.Label>
                             <Form.Select
                                 multiple={true}
@@ -196,9 +183,7 @@ export default function AddListing() {
                                 <option value={"Food"}>Food</option>
                                 <option value={"Transport"}>Transport</option>
                             </Form.Select>
-                        </Form.Group>
-
-                        <Form.Group id='addfac'>
+                        
                             <Form.Label>Additional facilities</Form.Label>
                             <Form.Select
                                 multiple={true}
@@ -212,8 +197,7 @@ export default function AddListing() {
                                     Air conditioning{" "}
                                 </option>
                             </Form.Select>
-                        </Form.Group>
-                        <Form.Group id='upload'>
+                        
                             <Form.Label>Upload image</Form.Label>
                             <DisplayImage onImgChange={onImgUpload} />
                         </Form.Group>

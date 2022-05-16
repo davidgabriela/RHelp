@@ -3,6 +3,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { MdAlternateEmail, MdPhone } from 'react-icons/md';
 import firebase from "../firebase";
 import MyMap from "../Map/Map";
 import Navbar from "../Navbar/Navbar";
@@ -37,6 +38,7 @@ class ListingPage extends React.Component {
             .then((response) => {
                 this.setState({
                     owner_email: response.data.data.owner_email,
+                    owner_phone: response.data.data.owner_phone,
                     title: response.data.data.title,
                     description: response.data.data.description,
                     location: response.data.data.location,
@@ -97,43 +99,72 @@ class ListingPage extends React.Component {
         return (
             <div className="listing-page-container">
                 <Navbar></Navbar>
-                <h1>{this.state.title}</h1>
-                <Row>
-                    <Col >
-                        <div className="listing-photo">
+                <h1 className="m-3 listing-title">{this.state.title}</h1>
+                <Row md={{gutter: 20}}>
+                    <Col lg={6} md={12}>
+                        <div className="listing-photo m-3 bordered">
                             <img
                                 src={this.state.photo}
                                 alt='listing'
                             ></img>
                         </div>
                     </Col>
-                    <Col>
-                        <MyMap 
-                            position={this.state.location.coordinates}
-                        ></MyMap>
+                    <Col lg={6} md={12}>
+                        <div className="m-3 bordered">
+                            <MyMap 
+                                position={this.state.location.coordinates}
+                            ></MyMap>
+                        </div>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <h1>Description</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit. Suspendisse malesuada
-                            id nibh vel placerat. Pellentesque
-                            pulvinar tempus lorem eu fringilla.{" "}
-                        </p>
+                        <div className='m-3 card-body reservation-card bordered'>
+                            <h3 className="m-3">Description</h3>
+                            <p className="m-3">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse malesuada
+                                id nibh vel placerat. Pellentesque
+                                pulvinar tempus lorem eu fringilla.{" "}
+                            </p>
+                        </div>
                     </Col>
                     <Col>
-                    <div className='reservation_card text-center shadow'>
-                        <div className='card-body text-dark'>
-                        <h4 className='card-title'>Reserve</h4>
-                        <p className='card-text text-secondary'>Make a reservation today!</p>
-                        <Button onClick={this.makeReservation}>
-                            Reserve
-                        </Button>
-                    </div>
-                    </div>
-                       
+                        <div className="bordered m-3">
+                            <div className="card-header">
+                                <p>
+                                    <MdAlternateEmail/><b>Host email:</b> { this.state.owner_email }
+                                </p>
+                                <p>
+                                    <MdPhone/><b>Host phone number:</b> { this.state.owner_phone }
+                                </p>
+                            </div>
+                            <div className='card-body text-dark'>
+                                <h4 className='card-title'>Reserve</h4>
+                                <p className='card-text text-secondary'>Make a reservation today!</p>
+                                <Button onClick={this.makeReservation}>
+                                    Reserve
+                                </Button>
+                            </div>
+                        </div>
                     </Col>
                 </Row>
             </div>
