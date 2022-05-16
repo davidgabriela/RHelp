@@ -1,0 +1,42 @@
+.btn-link { 
+    text-decoration: none;
+    color: white;
+}
+
+.main-container {
+    min-width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 70px);
+    margin-top: 70px;
+    padding: 0;
+}
+
+.main-row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    width: 100%;
+}
+
+.main-map{
+    background-color: #000;
+    background: linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(0, 22, 69, 0.4)), url('../assets/flag_ukraine.webp');
+    background-size: cover;
+}
+
+.main-hero {
+    background-color: rgb(46, 51, 56);
+    color: white;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main-box {
+    margin: 0 10vw;
+}
+
+.main-box h1, p {
+    padding: 10px 0;
+}

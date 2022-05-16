@@ -1,9 +1,0 @@
-.flex-container {
-    flex-flow: column;
-}
-
-.card_list {
-    justify-content: center;
-    gap: 4em;
-    margin: 0 30px;
-}
