@@ -38,9 +38,11 @@ export default function Dashboard() {
 
         return listings.map((item, index) => (
             <Card
-                name={item.title}
-                phone={item.owner_email}
-                imgsrc={item.photo}
+            key={index}
+            name={item.title}
+            phone={item.owner_email}
+            imgsrc={item.photo}
+            listingId={item._id}
             ></Card>
         ));
     };

@@ -56,6 +56,15 @@ class ListingPage extends React.Component {
             .catch(() => {
                 console.log("Error retrieving guests!");
             });
+
+            axios
+            .get("http://localhost:5000/api/v1/guests")
+            .then((guest_response) => {
+                this.setState(guest_response.data.data);
+            })
+            .catch(() => {
+                console.log("Error retrieving guests!");
+            });
     }
 
     makeReservation() {

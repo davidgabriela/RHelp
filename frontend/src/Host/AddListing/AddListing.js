@@ -207,7 +207,7 @@ export default function AddListing() {
                             className='w-100 auth-button'
                             type='submit'
                         >
-                            Sign Up
+                            Submit form
                         </Button>
                     </Form>
                 </Card.Body>
