@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
 import firebase from "../../firebase";
 import DisplayImage from "../DisplayImage/DisplayImage";
-
+import { useHistory } from "react-router-dom";
 export default function AddListing() {
     const listingTitle = useRef();
     const fullAdress = useRef();
@@ -18,7 +18,7 @@ export default function AddListing() {
     const [photoUrl, setPhotoUrl] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
+    const history = useHistory();
     const sendData = (body) => {
         const requestOptions = {
             method: "POST",
@@ -31,6 +31,8 @@ export default function AddListing() {
             .then((data) => {
                 console.log(data);
             });
+
+            history.push("/hostdash");
     };
 
     const handleSafetyItemsChange = (e) => {
@@ -76,7 +78,7 @@ export default function AddListing() {
             additional_facilities: addfacilities,
             photo: photoUrl,
         };
-
+        
         console.log(req_body);
         sendData(req_body);
     }
