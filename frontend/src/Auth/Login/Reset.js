@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
+import Navbar from '../../Navbar/Navbar';
+
 export default function Reset() {
     const emailRef = useRef();
     const [loading, setLoading] = useState(false);
@@ -20,6 +22,9 @@ export default function Reset() {
     }
     return (
         <div className="page-container">
+            <Navbar></Navbar>
+            <div className="blue-half"></div>
+            <div className="yellow-half"></div>
             <div className="login-container">
                 <Card id='card-container-login'>
                     <Card.Body className="card-body">
@@ -37,7 +42,7 @@ export default function Reset() {
                                 variant="primary"
                                 type='submit'
                             >
-                                Send Email to recover password
+                                Recover password
                             </Button>
                         </Form>
                     </Card.Body>

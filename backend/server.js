@@ -15,6 +15,7 @@ const listings = require("./routes/listings");
 const hosts = require("./routes/hosts");
 const guests = require("./routes/guests");
 const reservations = require("./routes/reservations");
+const contact = require("./routes/contact");
 
 const app = express();
 app.use(express.json({ limit: "30mb", extended: true }));
@@ -35,6 +36,7 @@ app.use("/api/v1/listings", listings);
 app.use("/api/v1/hosts", hosts);
 app.use("/api/v1/guests", guests);
 app.use("/api/v1/reservation", reservations);
+app.use("/api/v1/contact", contact);
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");

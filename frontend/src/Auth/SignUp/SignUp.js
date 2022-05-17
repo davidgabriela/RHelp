@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
+import Navbar from "../../Navbar/Navbar";
 import "./SignUp.css";
 
 export default function SignUp() {
@@ -55,10 +56,13 @@ export default function SignUp() {
 
     return (
         <div className="page-container">
+            <Navbar></Navbar>
+            <div className="blue-half"></div>
+            <div className="yellow-half"></div>
             <div className="login-container">
                 <Card id='card-container-login'>
                     <Card.Body className="card-body">
-                        <h2 className='text-center mb-4'>Sign Up</h2>
+                        <h2 className='text-center mb-4'>New account</h2>
                         {error && <Alert variant='danger'>{error}</Alert>}
 
                         <Form className="form-container" onSubmit={handleSubmit}>
@@ -95,7 +99,7 @@ export default function SignUp() {
                                 variant="primary"
                                 type='submit'
                             >
-                                Sign Up
+                                Register
                             </Button>
                         </Form>
                     </Card.Body>

@@ -1,0 +1,31 @@
+.supp-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.supp-page-container h1, h2, h6{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.blue-half {
+    position: absolute;
+    height: calc((100vh - 70px) / 2);
+    width: 100vw;
+    top: 70px;
+    background-color: #005abbd0;
+}
+
+.yellow-half {
+    position: absolute;
+    height: calc((100vh - 70px) / 2);
+    width: 100vw;
+    bottom: 0;
+    background-color: #ffd500d0;
+}

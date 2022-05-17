@@ -4,9 +4,9 @@
 }
 
 .btn:hover{
-    background-color: rgb(249, 224, 0);
+    background-color: #ffd500;
     color: #000;
-    border-color: rgb(249, 224, 0);
+    border-color: #ffd500;
 
 }
 
@@ -25,9 +25,8 @@
 }
 
 .main-map{
-    background-color: #000;
-    background: linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(0, 22, 69, 0.4)), url('../assets/flag_ukraine.webp');
-    background-size: cover;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 .main-hero {
@@ -46,4 +45,13 @@
 
 .main-box h1, p {
     padding: 10px 0;
+}
+
+.blue {
+    height: calc((100vh - 70px) /2);
+    background-color: #005abbc0;
+}
+.yellow {
+    height: calc((100vh - 70px) /2);
+    background-color: #ffd500c0;
 }

@@ -11,6 +11,7 @@ import HostDashboard from "./Host/Dashboard/Dashboard";
 import ListingPage from "./ListingPage/ListingPage";
 import MainPage from "./MainPage/MainPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import SupportPage from './SupportPage/SupportPage';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <AuthProvider>
                             <Switch>
                                 <Route exact path='/' component={MainPage} />
+                                <Route exact path='/support' component={SupportPage} />
                                 <Route exact path='/login' component={Login} />
                                 <Route
                                     exact

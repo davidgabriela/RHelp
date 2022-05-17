@@ -42,6 +42,8 @@ export default function MainPage() {
                     <Navbar></Navbar>
                     <Row className='main-row'>
                         <Col lg={12} xl className='main-col main-map'>
+                            <Row className="blue"></Row>
+                            <Row className="yellow"></Row>
                         </Col>
                         <Col lg={12} xl className='main-col main-hero'>
                             <div className='main-box'>
