@@ -53,7 +53,7 @@ export default function BootstrapNavbar(props) {
                 {props.role === "host" ? (
                     <Nav.Item>
                         <Nav.Link as={NavLink} to='/addlisting'>
-                            <Button variant='outline-light'>Add Listing</Button>
+                            <Button variant='outline-light'>Add new listing</Button>
                         </Nav.Link>
                     </Nav.Item>
                 ) : (

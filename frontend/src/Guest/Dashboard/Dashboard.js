@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Row, Spinner } from "react-bootstrap";
-import Card from "../../Card/Card";
+import ListCard from "../../Card/Card";
 import Navbar from "../../Navbar/Navbar";
 import SearchBar from "../../SearchBar/SearchBar";
 import "./Dashboard.css";
@@ -59,13 +59,13 @@ class Dashboard extends Component {
         if (!listings.length) return null;
 
         return listings.map((item, index) => (
-            <Card
+            <ListCard
                 key={index}
                 name={item.title}
                 phone={item.owner_email}
                 imgsrc={item.photo}
                 listingId={item._id}
-            ></Card>
+            ></ListCard>
         ));
     };
 

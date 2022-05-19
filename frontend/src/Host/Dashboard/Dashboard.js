@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Row, Spinner } from "react-bootstrap";
-import Card from "../../Card/Card";
+import ListCard from "../../Card/Card";
 import firebase from "../../firebase";
 import Navbar from "../../Navbar/Navbar";
 import "./Dashboard.css";
@@ -37,13 +37,13 @@ export default function Dashboard() {
         if (!listings.length) return null;
 
         return listings.map((item, index) => (
-            <Card
+            <ListCard
             key={index}
             name={item.title}
             phone={item.owner_email}
             imgsrc={item.photo}
             listingId={item._id}
-            ></Card>
+            ></ListCard>
         ));
     };
 
