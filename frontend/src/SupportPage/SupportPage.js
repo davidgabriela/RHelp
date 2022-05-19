@@ -38,7 +38,7 @@ export default function MainPage() {
         e.preventDefault();
 
         axios
-            .post("http://localhost:5000/api/v1/contact",
+            .post("http://localhost:4040/api/mail/contact",
             {
                 "email": emailRef.current.value,
                 "name": nameRef.current.value,

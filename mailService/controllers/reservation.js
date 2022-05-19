@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("../config/serviceAccountKey.json");
 
 // @desc    Make reservation
-// @route   POST /api/v1/reservation
+// @route   POST /api/mail/reservation
 // @access  Public
 exports.makeReservation = async (req, res, next) => {
 
@@ -13,16 +13,12 @@ exports.makeReservation = async (req, res, next) => {
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
-
-    console.log("Header is....", req.headers.authorization)
     
     admin.auth().verifyIdToken(req.headers.authorization).then(async function(decodedToken) {
             let uid = decodedToken.uid;
-            console.log("uid is " + uid);
             user = admin.auth().getUser(uid)
 
             try {
-                console.log("Trying to send email...");
                 await sendEmail({
                     email: (await user).email,
                     subject: "Your reservation",

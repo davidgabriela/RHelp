@@ -2,7 +2,7 @@ const sendEmail = require("../utils/sendEmail");
 const admin = require("firebase-admin");
 
 // @desc    Make reservation
-// @route   POST /api/v1/contact
+// @route   POST /api/mail/contact
 // @access  Public
 exports.contactSupport = async (req, res, next) => {
 
@@ -10,7 +10,6 @@ exports.contactSupport = async (req, res, next) => {
     const email = 'admin@admin.com'
 
     try {
-        console.log("Trying to send email...");
         await sendEmail({
             email,
             subject: "Support",
