@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { MdAlternateEmail, MdPhone } from 'react-icons/md';
+import { AiFillEdit, AiOutlineCheckCircle } from "react-icons/ai";
+import { useAuth } from "../contexts/AuthContexts";
 import firebase from "../firebase";
 import MyMap from "../Map/Map";
 import Navbar from "../Navbar/Navbar";
@@ -15,6 +17,7 @@ class ListingPage extends React.Component {
 
         this.state = {
             owner_email: "",
+            guests_list:[],
             title: "",
             description: "",
             location: "",
@@ -26,9 +29,12 @@ class ListingPage extends React.Component {
             additional_facilities: [],
             photo: "",
             averageRating: 0,
-            listing_id: ''
+            listing_id: '',
         };
-        this.makeReservation = this.makeReservation.bind(this)
+        this.makeReservation = this.makeReservation.bind(this);
+        this.checkUser = this.checkUser.bind(this);
+        this.end_edit = this.end_edit.bind(this);
+        this.start_edit = this.start_edit.bind(this);
     }
 
     componentDidMount() {
@@ -57,16 +63,26 @@ class ListingPage extends React.Component {
                 console.log("Error retrieving guests!");
             });
 
-            axios
+        axios
             .get("http://localhost:5000/api/v1/guests")
             .then((guest_response) => {
-                this.setState(guest_response.data.data);
+                this.setState({
+                    guests_list:guest_response.data.data
+                });
             })
             .catch(() => {
-                console.log("Error retrieving guests!");
+                console.log("Error retrieving guest list!");
             });
     }
-
+    
+    checkUser() {
+        const findGuest = this.state.guests_list.filter((item) => {
+            return item.email === firebase.auth().currentUser.email;
+        });
+        if (findGuest.length > 0) {
+            return true;
+        } else return false;
+    }
     makeReservation() {
         axios
             .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`,
@@ -103,12 +119,45 @@ class ListingPage extends React.Component {
             console.log('Error sending token: ', error)
         });
     }
+    start_edit = (id) =>{
+        const paragraph = document.getElementById(id);
+        console.log(id);
+        paragraph.contentEditable = true;
+        paragraph.style.backgroundColor = "#dddbdb";
+    }
+    
+    end_edit = (id) => {
+        const paragraph = document.getElementById(id);
+        paragraph.contentEditable = false;
+        paragraph.style.backgroundColor = "#dddbdb";
 
+        axios
+        .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`,
+        {
+            "description": paragraph.innerText
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch(() => {
+            console.log("Error updating listing rented boolean!");
+        });
+    } 
+       
     render() {
         return (
             <div className="listing-page-container">
                 <Navbar></Navbar>
-                <h1 className="m-3 listing-title">{this.state.title}</h1>
+                {this.checkUser() == true?
+                (<h1 className="m-3 listing-title">{this.state.title}</h1>)
+                :
+                (<div className="edit-title">
+
+                        <Button onClick={() => this.start_edit("title")}><AiFillEdit/></Button>
+                        <h1 id="title" className="m-3 listing-title">{this.state.title}</h1>
+                        <Button onClick={() => this.end_edit("title")}><AiOutlineCheckCircle/></Button>
+                </div>)
+                }
                 <Row md={{gutter: 20}}>
                     <Col lg={6} md={12}>
                         <div className="listing-photo m-3 bordered">
@@ -128,35 +177,36 @@ class ListingPage extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <div className='m-3 card-body reservation-card bordered'>
+                    {this.checkUser() == true?
+                        (<div className='m-3 card-body reservation-card bordered'>
                             <h3 className="m-3">Description</h3>
                             <p className="m-3">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada
-                                id nibh vel placerat. Pellentesque
-                                pulvinar tempus lorem eu fringilla.{" "}
+                            { this.state.description }{" "}
                             </p>
+                        </div>):
+                        (
+                            <div className='m-3 card-body reservation-card bordered'>
+                            <h3 className="m-3">Description</h3>
+                            <p className="m-3" id="edit">
+                            { this.state.description }{" "}
+                            </p>
+                            <Row>
+                                <Col className="m-3">
+                                    <Button onClick={() => this.start_edit("edit")}><AiFillEdit/></Button>
+                                </Col>
+                                <Col className="m-3">
+                                    <Button onClick={() => this.end_edit("edit")}><AiOutlineCheckCircle/></Button>
+                                </Col>
+                                    
+                            </Row>
+                            
                         </div>
+                        
+                        )
+                    }
                     </Col>
                     <Col>
+                        
                         <div className="bordered m-3">
                             <div className="card-header">
                                 <p>
@@ -169,9 +219,12 @@ class ListingPage extends React.Component {
                             <div className='card-body text-dark'>
                                 <h4 className='card-title'>Reserve</h4>
                                 <p className='card-text text-secondary'>Make a reservation today!</p>
-                                <Button onClick={this.makeReservation}>
+                            {this.checkUser() == true?
+                                (<Button onClick={this.makeReservation}>
                                     Reserve
                                 </Button>
+                                ):(<div>Now your listing can be reserved by customers!</div>)
+                            }
                             </div>
                         </div>
                     </Col>
