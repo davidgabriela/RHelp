@@ -22,9 +22,13 @@
     --bs-gutter-x: 0;
     --bs-gutter-y: 0;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .main-map{
+    display: flex;
+    flex-flow: column wrap;
     background: rgb(255, 255, 255);
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
@@ -40,18 +44,22 @@
 }
 
 .main-box {
-    margin: 0 10vw;
+    margin: 0 50px;
 }
 
 .main-box h1, p {
     padding: 10px 0;
 }
 
+.main-box p {
+    margin: 0 50px 3rem;
+}
+
 .blue {
-    height: calc((100vh - 70px) /2);
+    height: 50%;
     background-color: #005abbc0;
 }
 .yellow {
-    height: calc((100vh - 70px) /2);
+    height: 50%;
     background-color: #ffd500c0;
 }

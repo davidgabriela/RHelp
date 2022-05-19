@@ -38,14 +38,14 @@ export default function MainPage() {
     } else
         return (
             <>
-                <Container className='main-container'>
-                    <Navbar></Navbar>
-                    <Row className='main-row'>
-                        <Col lg={12} xl className='main-col main-map'>
+                <Navbar></Navbar>
+                <Container className='main-container gap-0'>
+                    <Row className="main-row">
+                        <Col lg={12} xl className='main-map'>
                             <Row className="blue"></Row>
                             <Row className="yellow"></Row>
                         </Col>
-                        <Col lg={12} xl className='main-col main-hero'>
+                        <Col lg={12} xl className='main-hero'>
                             <div className='main-box'>
                                 <h1>Housing for refugees</h1>
                                 <p>

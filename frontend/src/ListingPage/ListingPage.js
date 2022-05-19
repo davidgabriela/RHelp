@@ -3,9 +3,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { MdAlternateEmail, MdPhone } from 'react-icons/md';
 import { AiFillEdit, AiOutlineCheckCircle } from "react-icons/ai";
-import { useAuth } from "../contexts/AuthContexts";
+import { MdAlternateEmail, MdPhone } from 'react-icons/md';
 import firebase from "../firebase";
 import MyMap from "../Map/Map";
 import Navbar from "../Navbar/Navbar";
@@ -131,11 +130,13 @@ class ListingPage extends React.Component {
         paragraph.contentEditable = false;
         paragraph.style.backgroundColor = "#dddbdb";
 
+        const body = {}
+        body[id] = paragraph.innerText
+
+        console.log("body", body)
+        
         axios
-        .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`,
-        {
-            "description": paragraph.innerText
-        })
+        .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`, body)
         .then((response) => {
             console.log(response);
         })
@@ -187,15 +188,15 @@ class ListingPage extends React.Component {
                         (
                             <div className='m-3 card-body reservation-card bordered'>
                             <h3 className="m-3">Description</h3>
-                            <p className="m-3" id="edit">
+                            <p className="m-3" id="description">
                             { this.state.description }{" "}
                             </p>
                             <Row>
                                 <Col className="m-3">
-                                    <Button onClick={() => this.start_edit("edit")}><AiFillEdit/></Button>
+                                    <Button onClick={() => this.start_edit("description")}><AiFillEdit/></Button>
                                 </Col>
                                 <Col className="m-3">
-                                    <Button onClick={() => this.end_edit("edit")}><AiOutlineCheckCircle/></Button>
+                                    <Button onClick={() => this.end_edit("description")}><AiOutlineCheckCircle/></Button>
                                 </Col>
                                     
                             </Row>
