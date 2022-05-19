@@ -82,6 +82,7 @@ class ListingPage extends React.Component {
             return true;
         } else return false;
     }
+
     makeReservation() {
         axios
             .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`,
@@ -148,8 +149,8 @@ class ListingPage extends React.Component {
     render() {
         return (
             <div className="listing-page-container">
-                <Navbar></Navbar>
-                {this.checkUser() == true?
+                <Navbar role={this.checkUser() === true ? "guest" : "host"}></Navbar>
+                {this.checkUser() === true?
                 (<h1 className="m-3 listing-title">{this.state.title}</h1>)
                 :
                 (<div className="edit-title">

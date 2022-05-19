@@ -5,23 +5,7 @@ import "./Card.css";
 
 const ListCard = (props) => {
     return (
-        // <div className='card text-center shadow'>
-        //     <div className='overflow'>
-        //         <img src={props.imgsrc} alt='' className='card-img-top' />
-        //     </div>
-
-        //     <div className='card-body text-dark'>
-        //         <h4 className='card-title'>{props.name}</h4>
-        //         <p className='card-text text-secondary'>{props.phone}</p>
-        //         <Link
-        //             className='btn btn-outline-success'
-        //             to={{ pathname: `/listingpage/${props.listingId}` }}
-        //         >
-        //             More info
-        //         </Link>
-        //     </div>
-        // </div>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '19rem' }}>
             <div className="overflow">
                 <Card.Img variant="top" src={props.imgsrc} />
             </div>

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import firebase from "../../firebase";
 import DisplayImage from "../DisplayImage/DisplayImage";
-import { useHistory } from "react-router-dom";
 export default function AddListing() {
     const listingTitle = useRef();
     const fullAdress = useRef();
@@ -209,7 +209,7 @@ export default function AddListing() {
                             className='w-100 auth-button'
                             type='submit'
                         >
-                            Submit form
+                            Add new listing
                         </Button>
                     </Form>
                 </Card.Body>

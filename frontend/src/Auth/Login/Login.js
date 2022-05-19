@@ -101,7 +101,7 @@ export default function Login() {
                         Need an account? <Link to='/signup'>Register</Link>
                     </div>
                     <div className='w-100 text-center mt-2'>
-                        Forgot password? <Link to='/resetpawssord'>Reset</Link>
+                        Forgot password? <Link to='/resetpawssord'>Reset password</Link>
                     </div>
                 </div>
             </div>

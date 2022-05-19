@@ -13,7 +13,6 @@
     align-items: center;
     align-content: center;
     justify-content: flex-start;
-    height: 60vh;
     z-index: 100;
 }
 
@@ -39,6 +38,6 @@
 
 #card-container-login {
     width: 40%;
-    padding: 0 2rem;
+    padding: 2rem 2rem;
     margin-top: 40px;
 }

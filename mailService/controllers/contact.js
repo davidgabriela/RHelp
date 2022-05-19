@@ -7,7 +7,7 @@ const admin = require("firebase-admin");
 exports.contactSupport = async (req, res, next) => {
 
     const message = `${req.body.name} wrote:\n${req.body.message}\n\nContact the person at ${req.body.email}`;
-    const email = 'admin@admin.com'
+    const email = 'support@rhelp.com'
 
     try {
         await sendEmail({
