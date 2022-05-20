@@ -7,9 +7,20 @@ const {
     deleteReservation,
 } = require("../controllers/reservations");
 
-const router = express.Router();
+const Reservation = require("../models/Reservation");
+const advancedResults = require("../middleware/advancedResults");
 
-router.route("/").get(getReservations).post(createReservation);
+const router = express.Router({ mergeParams: true });
+
+router.route("/")
+    .get(
+        advancedResults(Reservation, {
+            path: "listing guest",
+            select: "owner_email title description photo email",
+        }),
+        getReservations
+    )
+        .post(createReservation);
 
 router.route("/:id").get(getReservation).put(updateReservation).delete(deleteReservation);
 

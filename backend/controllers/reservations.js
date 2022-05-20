@@ -4,19 +4,8 @@ const Reservation = require("../models/Reservation");
 // @route   GET /api/v1/reservations
 // @access  Public
 exports.getReservations = async (req, res, next) => {
-    try {
-        const reservations = await Reservation.find();
 
-        res.status(200).json({
-            success: true,
-            count: reservations.length,
-            data: reservations,
-        });
-    } catch (err) {
-        res.status(400).json({
-            success: false,
-        });
-    }
+    res.status(200).json(res.advancedResults);
 };
 
 // @desc    Get a single reservation

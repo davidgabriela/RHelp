@@ -103,8 +103,8 @@ class ListingPage extends React.Component {
         axios
             .post(`http://localhost:5000/api/v1/reservations`,
             {
-                "listingId": this.state.listing_id,
-                "guestId": guestId
+                "listing": this.state.listing_id,
+                "guest": guestId
             })
             .then((response) => {
                 console.log(response);
