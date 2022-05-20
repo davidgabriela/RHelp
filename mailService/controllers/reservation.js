@@ -7,12 +7,15 @@ const serviceAccount = require("../config/serviceAccountKey.json");
 // @access  Public
 exports.makeReservation = async (req, res, next) => {
 
-    const message = `Your reservation is made!`;
+    const message = `Your reservation for ${req.body.title} is made!`;
     let user;
 
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
-    });
+
+    if (!admin.apps.length) {
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount)
+        });
+    }
     
     admin.auth().verifyIdToken(req.headers.authorization).then(async function(decodedToken) {
             let uid = decodedToken.uid;
@@ -21,7 +24,7 @@ exports.makeReservation = async (req, res, next) => {
             try {
                 await sendEmail({
                     email: (await user).email,
-                    subject: "Your reservation",
+                    subject: "Reservation confirmation",
                     message,
                 });
                 res.status(200).json({ success: true, data: "Email sent" });

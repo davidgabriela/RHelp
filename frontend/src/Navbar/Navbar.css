@@ -9,6 +9,8 @@
 }
 
 .navbar-dark .navbar-brand:hover {
-    font-size: 150%;
-    color: rgb(255, 238, 0);
+    color: #ffd500;
+    -webkit-transition: color .2s ease-in-out;
+    -ms-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
 }

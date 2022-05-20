@@ -14,7 +14,6 @@ function MyMap(props) {
     }, [props.position]);
 
     if (position !== undefined) {
-        console.log("Map...", position);
         return (
             <MapContainer
                 center={position}

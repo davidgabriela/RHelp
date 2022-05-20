@@ -25,7 +25,6 @@ class Dashboard extends Component {
             .then((response) => {
                 const data = response.data.data;
                 const unrentedListings = data.filter(item => {
-                    console.log("Rented? ", item.rented)
                     return !item.rented
                 })
                 this.setState({ listings: unrentedListings, filteredlistings: unrentedListings });
@@ -61,8 +60,8 @@ class Dashboard extends Component {
         return listings.map((item, index) => (
             <ListCard
                 key={index}
-                name={item.title}
-                phone={item.owner_email}
+                title={item.title}
+                description={item.description}
                 imgsrc={item.photo}
                 listingId={item._id}
             ></ListCard>
@@ -87,10 +86,7 @@ class Dashboard extends Component {
                         .toString()
                         .toLowerCase()
                         .includes(location.toString().toLowerCase()) &&
-                    item.number_guests
-                        .toString()
-                        .toLowerCase()
-                        .includes(guests.toString().toLowerCase())
+                        parseInt(guests) <= parseInt(item.number_guests)
                 );
             }),
         });

@@ -6,6 +6,7 @@ import PassReset from "./Auth/Login/Reset";
 import Signup from "./Auth/SignUp/SignUp";
 import { AuthProvider } from "./contexts/AuthContexts";
 import GuestDashboard from "./Guest/Dashboard/Dashboard";
+import ReservationsPage from './Guest/ReservationsPage/ReservationsPage';
 import AddListing from "./Host/AddListing/AddListing";
 import HostDashboard from "./Host/Dashboard/Dashboard";
 import ListingPage from "./ListingPage/ListingPage";
@@ -24,6 +25,7 @@ function App() {
                                 <Route exact path='/' component={MainPage} />
                                 <Route exact path='/support' component={SupportPage} />
                                 <Route exact path='/login' component={Login} />
+                                <Route exact path='/reservations' component={ReservationsPage} />
                                 <Route
                                     exact
                                     path='/resetpawssord'

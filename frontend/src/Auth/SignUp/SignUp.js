@@ -21,7 +21,6 @@ export default function SignUp() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: emailRef.current.value }),
         };
-        console.log(roleRef.current.value.toLowerCase());
         fetch(
             `http://localhost:5000/api/v1/${
                 roleRef.current.value.toLowerCase() + "s"
@@ -67,6 +66,7 @@ export default function SignUp() {
 
                         <Form className="form-container" onSubmit={handleSubmit}>
                             <Form.Group id='credentials'>
+                                
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     type='email'

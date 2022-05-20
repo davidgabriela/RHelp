@@ -4,22 +4,25 @@ import { Row, Spinner } from "react-bootstrap";
 import ListCard from "../../Card/Card";
 import firebase from "../../firebase";
 import Navbar from "../../Navbar/Navbar";
-import "./Dashboard.css";
 
 export default function Dashboard() {
     const [listings, setListings] = useState([]);
     const [showSpinner, setShowSpinner] = useState(true);
+    const [guestList, setGuestList] = useState([]);
+    const [guestId, setGuestId] = useState('');
 
     useEffect(() => {
         let isMounted = true;
+        
+        getGuestId()
+
         axios
-            .get("http://localhost:5000/api/v1/listings")
+            .get("http://localhost:5000/api/v1/reservations")
             .then((response) => {
                 const data = response.data.data;
-
                 const filteredData = data.filter(
                     (item) =>
-                        item.owner_email === firebase.auth().currentUser.email
+                        item.guestId === guestId
                 );
 
                 if (isMounted) setListings(filteredData);
@@ -31,7 +34,33 @@ export default function Dashboard() {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [guestId]);
+
+
+    const getGuestId = async () => {
+        const email = await firebase.auth().currentUser.email
+        axios
+            .get("http://localhost:5000/api/v1/guests")
+            .then((guest_response) => {
+                setGuestList(guest_response.data.data)
+                setGuestId(guest_response.data.data.filter(item => {
+                    return item.email === email
+                })[0]._id)
+            })
+            .catch(() => {
+                console.log("Error retrieving guest list!");
+            });
+    }
+
+    const checkUser = () => {
+        const email = firebase.auth().currentUser.email
+        const findGuest = guestList.filter((item) => {
+            return item.email === email;
+        });
+        if (findGuest.length > 0) {
+            return true;
+        } else return false;
+    }
 
     const displayCard = (listings) => {
         if (!listings.length) return null;
@@ -39,8 +68,8 @@ export default function Dashboard() {
         return listings.map((item, index) => (
             <ListCard
             key={index}
-            title={item.title}
-            description={item.description}
+            title="{item.title}"
+            description="{item.description}"
             imgsrc={item.photo}
             listingId={item._id}
             ></ListCard>
@@ -59,7 +88,7 @@ export default function Dashboard() {
 
     return (
         <div>
-            <Navbar role='host'></Navbar>
+            <Navbar role={checkUser() === true ? "guest" : "host"}></Navbar>
             <div className='container-fluid d-flex justify-content-center flex-container'>
                 <Row className='card-list'>
                     <Row>

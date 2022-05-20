@@ -33,7 +33,6 @@ export default function MainPage() {
     }, []);
 
     if (auth.currentUser) {
-        console.log("Logged in as...", auth.currentUser.email);
         return <Redirect to={role} replace />;
     } else
         return (

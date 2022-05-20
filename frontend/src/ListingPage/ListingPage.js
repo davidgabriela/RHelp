@@ -28,15 +28,31 @@ class ListingPage extends React.Component {
             additional_facilities: [],
             photo: "",
             averageRating: 0,
-            listing_id: '',
+            listing_id: ''
         };
         this.makeReservation = this.makeReservation.bind(this);
         this.checkUser = this.checkUser.bind(this);
         this.end_edit = this.end_edit.bind(this);
         this.start_edit = this.start_edit.bind(this);
+        this.reservationStatus = this.reservationStatus.bind(this);
+        this.getListings = this.getListings.bind(this);
     }
 
     componentDidMount() {
+        this.getListings()
+        axios
+            .get("http://localhost:5000/api/v1/guests")
+            .then((guest_response) => {
+                this.setState({
+                    guests_list:guest_response.data.data
+                });
+            })
+            .catch(() => {
+                console.log("Error retrieving guest list!");
+            });
+    }
+
+    getListings() {
         var id = this.props.match.params.id;
         axios
             .get(`http://localhost:5000/api/v1/listings/${id}`)
@@ -55,35 +71,49 @@ class ListingPage extends React.Component {
                     additional_facilities:
                         response.data.data.additional_facilities,
                     photo: response.data.data.photo,
-                    listing_id: this.props.match.params.id
+                    listing_id: this.props.match.params.id,
+                    rented: response.data.data.rented
                 });
             })
             .catch(() => {
                 console.log("Error retrieving guests!");
             });
-
-        axios
-            .get("http://localhost:5000/api/v1/guests")
-            .then((guest_response) => {
-                this.setState({
-                    guests_list:guest_response.data.data
-                });
-            })
-            .catch(() => {
-                console.log("Error retrieving guest list!");
-            });
     }
     
     checkUser() {
+        const email = firebase.auth().currentUser.email
         const findGuest = this.state.guests_list.filter((item) => {
-            return item.email === firebase.auth().currentUser.email;
+            return item.email === email;
         });
         if (findGuest.length > 0) {
             return true;
         } else return false;
     }
 
-    makeReservation() {
+    async makeReservation() {
+        
+        const email = await firebase.auth().currentUser.email
+        console.log(email)
+
+        const guestId = this.state.guests_list.filter(item => {
+            return item.email === email
+        })[0]._id
+
+        console.log(guestId)
+        axios
+            .post(`http://localhost:5000/api/v1/reservations`,
+            {
+                "listingId": this.state.listing_id,
+                "guestId": guestId
+            })
+            .then((response) => {
+                console.log(response);
+                this.setState({rented: true})
+            })
+            .catch(() => {
+                console.log("Error adding new reservation!");
+            });
+
         axios
             .put(`http://localhost:5000/api/v1/listings/${this.props.match.params.id}`,
             {
@@ -95,12 +125,12 @@ class ListingPage extends React.Component {
             .catch(() => {
                 console.log("Error updating listing rented boolean!");
             });
+
         firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
             const headers = {
             'Content-Type': 'application/json',
             'Authorization': idToken
             }
-            console.log("heder? ...", headers['Authorization'])
             axios
                 .post("http://localhost:4040/api/mail/reservation",
                 {
@@ -144,7 +174,20 @@ class ListingPage extends React.Component {
         .catch(() => {
             console.log("Error updating listing rented boolean!");
         });
-    } 
+    }
+
+    reservationStatus() {
+        const isGuest = this.checkUser()
+        if (isGuest)
+            if(this.state.rented)
+                return <p>You reserved this place</p>
+            else if(this.state.rented !== undefined)
+                return <Button onClick={this.makeReservation}>Reserve</Button>
+            else
+                return <div></div>
+        else
+            return <div>Now your listing can be reserved by customers!</div>
+    }
        
     render() {
         return (
@@ -179,7 +222,8 @@ class ListingPage extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                    {this.checkUser() == true?
+                    {
+                    this.checkUser() === true?
                         (<div className='m-3 card-body reservation-card bordered'>
                             <h3 className="m-3">Description</h3>
                             <p className="m-3">
@@ -203,7 +247,6 @@ class ListingPage extends React.Component {
                             </Row>
                             
                         </div>
-                        
                         )
                     }
                     </Col>
@@ -221,12 +264,9 @@ class ListingPage extends React.Component {
                             <div className='card-body text-dark'>
                                 <h4 className='card-title'>Reserve</h4>
                                 <p className='card-text text-secondary'>Make a reservation today!</p>
-                            {this.checkUser() == true?
-                                (<Button onClick={this.makeReservation}>
-                                    Reserve
-                                </Button>
-                                ):(<div>Now your listing can be reserved by customers!</div>)
-                            }
+                                {
+                                    this.reservationStatus()
+                                }
                             </div>
                         </div>
                     </Col>

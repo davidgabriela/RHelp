@@ -3,7 +3,7 @@
 }
 
 .card_list {
-    justify-content: center;
-    gap: 4em;
+    justify-content: space-evenly;
+    gap: 2em;
     margin: 0 30px;
 }

@@ -34,8 +34,7 @@ export default function SearchBar(props) {
                             />
                             <Button
                                 type='submit'
-                                variant='outline-secondary'
-                                id='button-addon2'
+                                variant='outline-primary'
                             >
                                 Search
                             </Button>
@@ -44,7 +43,7 @@ export default function SearchBar(props) {
                 </Col>
                 <Col md={1}>
                     <Button
-                        variant='outline-secondary'
+                        variant='outline-primary'
                         id='button-addon2'
                         onClick={() => setModalShow(true)}
                     >

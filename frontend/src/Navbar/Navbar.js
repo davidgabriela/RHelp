@@ -21,7 +21,6 @@ export default function BootstrapNavbar(props) {
 
     var authButton = (user) => {
         if (user != null) {
-            console.log("Logged in as", user.email);
             return (
                 <Nav.Item>
                     <Nav.Link as={NavLink} to='/' onClick={handleLogout}>
@@ -57,7 +56,11 @@ export default function BootstrapNavbar(props) {
                         </Nav.Link>
                     </Nav.Item>
                 ) : (
-                    <div></div>
+                    <Nav.Item>
+                        <Nav.Link as={NavLink} to='/reservations'>
+                            <Button variant='outline-light'>My reservations</Button>
+                        </Nav.Link>
+                    </Nav.Item>
                 )}
                 <Nav.Item>
                     <Nav.Link as={NavLink} to='/support'>
