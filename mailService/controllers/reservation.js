@@ -7,7 +7,7 @@ const serviceAccount = require("../config/serviceAccountKey.json");
 // @access  Public
 exports.makeReservation = async (req, res, next) => {
 
-    const message = `Your reservation for ${req.body.title} is made!`;
+    const message = `Your reservation is made!`;
     let user;
 
 
