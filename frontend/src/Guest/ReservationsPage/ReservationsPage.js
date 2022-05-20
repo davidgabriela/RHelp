@@ -92,7 +92,7 @@ export default function Dashboard() {
             <div className='container-fluid d-flex justify-content-center flex-container'>
                 <Row className='card-list'>
                     <Row>
-                        <h1>My listings</h1>
+                        <h1>My reservations</h1>
                     </Row>
                     {displaySpinner()}
                     {displayCard(listings)}

@@ -5,7 +5,7 @@ const ReservationSchema = new mongoose.Schema({
         type: String,
     },
     listingId: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
     },
     number_guests: {
         type: Number,
