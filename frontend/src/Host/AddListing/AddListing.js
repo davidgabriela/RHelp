@@ -99,7 +99,7 @@ export default function AddListing() {
                         <h2 className='text-center mb-4'>Add Listing</h2>
                         {error && <Alert variant='danger'>{error}</Alert>}
 
-                        <Form className="form" onSubmit={handleSubmit}>
+                        <Form className="form-add-listing" onSubmit={handleSubmit}>
                             <Form.Group id='listing'>
                                 <Form.Label>Listing Title</Form.Label>
                                 <Form.Control
