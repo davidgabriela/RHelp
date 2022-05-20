@@ -64,7 +64,7 @@ export default function Login() {
             <div className="blue-half"></div>
             <div className="yellow-half"></div>
             <div className="page-container">
-                <Navbar role="guest"></Navbar>
+                <Navbar></Navbar>
                 <div className="login-container">
                     <Card id='card-container-login'>
                         <Card.Body className="card-body">

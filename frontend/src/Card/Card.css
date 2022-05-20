@@ -28,3 +28,9 @@ body{
 .card-img-top:hover{
     transform: scale(1.2);
 } 
+
+.btn .btn-primary:hover {
+    color: #fff;
+    background-color: #0a58ca;
+    border-color: #0a58ca;
+}

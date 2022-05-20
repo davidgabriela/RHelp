@@ -49,19 +49,21 @@ export default function BootstrapNavbar(props) {
         <Navbar id='navbar-container' bg='dark' variant='dark' fixed='top'>
             <Navbar.Brand as={NavLink} to='/'>RHelp</Navbar.Brand>
             <Nav>
-                {props.role === "host" ? (
-                    <Nav.Item>
-                        <Nav.Link as={NavLink} to='/addlisting'>
-                            <Button variant='outline-light'>Add new listing</Button>
-                        </Nav.Link>
-                    </Nav.Item>
-                ) : (
-                    <Nav.Item>
-                        <Nav.Link as={NavLink} to='/reservations'>
-                            <Button variant='outline-light'>My reservations</Button>
-                        </Nav.Link>
-                    </Nav.Item>
-                )}
+                {
+                    props.role === "host" ? (
+                        <Nav.Item>
+                            <Nav.Link as={NavLink} to='/addlisting'>
+                                <Button variant='outline-light'>Add new listing</Button>
+                            </Nav.Link>
+                        </Nav.Item>
+                    ): props.role === "guest" ?
+                        <Nav.Item>
+                            <Nav.Link as={NavLink} to='/reservations'>
+                                <Button variant='outline-light'>My reservations</Button>
+                            </Nav.Link>
+                        </Nav.Item> :
+                        <div></div>
+                }
                 <Nav.Item>
                     <Nav.Link as={NavLink} to='/support'>
                         <Button variant='outline-light'>Support</Button>

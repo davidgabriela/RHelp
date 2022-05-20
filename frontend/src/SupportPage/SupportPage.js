@@ -11,7 +11,7 @@ export default function MainPage() {
     const emailRef = useRef();
     const nameRef = useRef();
     const msgRef = useRef();
-    const [role, setRole] = useState("guest");
+    const [role, setRole] = useState("");
     const history = useHistory();
 
     useEffect(() => {

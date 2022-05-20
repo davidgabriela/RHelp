@@ -11,6 +11,10 @@ export default function Dashboard() {
     const [showSpinner, setShowSpinner] = useState(true);
 
     useEffect(() => {
+        getListings()
+    }, []);
+
+    const getListings = () => {
         let isMounted = true;
         axios
             .get("http://localhost:5000/api/v1/listings")
@@ -31,7 +35,20 @@ export default function Dashboard() {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }
+
+    const deleteListing = (idx, id) => {
+        console.log("delete")
+        setShowSpinner(true)
+        axios
+            .delete(`http://localhost:5000/api/v1/listings/${id}`)
+            .then((response) => {
+                getListings()
+            })
+            .catch(() => {
+                console.log("Error deleting listing!");
+            });
+    }
 
     const displayCard = (listings) => {
         if (!listings.length) return null;
@@ -39,22 +56,23 @@ export default function Dashboard() {
         return listings.map((item, index) => (
             <ListCard
             key={index}
+            index={index}
             title={item.title}
             description={item.description}
             imgsrc={item.photo}
             listingId={item._id}
+            role='host'
+            delete={deleteListing}
             ></ListCard>
         ));
     };
 
     const displaySpinner = () => {
-        if (showSpinner)
-            return (
-                <Spinner animation='border' role='status' variant='primary'>
-                    <span className='visually-hidden'>Loading...</span>
-                </Spinner>
-            );
-        else return <div></div>;
+        return (
+            <Spinner animation='border' role='status' variant='primary'>
+                <span className='visually-hidden'>Loading...</span>
+            </Spinner>
+        );
     };
 
     return (
@@ -65,8 +83,7 @@ export default function Dashboard() {
                     <Row>
                         <h1>My listings</h1>
                     </Row>
-                    {displaySpinner()}
-                    {displayCard(listings)}
+                    {showSpinner ? displaySpinner() : displayCard(listings)}
                 </Row>
             </div>
         </div>
