@@ -1,0 +1,30 @@
+select {
+    overflow: hidden;
+}
+.add-listing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 70px;
+    background: rgb(220, 220, 220);
+}
+.card-body-add-listing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: unset;
+}
+
+.card-container-add-listing {
+    width: 50%;
+    padding: 2rem 2rem;
+    margin: 60px;
+}
+
+#listing input, select{
+    margin-bottom: 10px;
+}
+
+form button{
+    margin-top: 30px;
+}

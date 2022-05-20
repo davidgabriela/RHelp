@@ -2,7 +2,10 @@ import React, { useRef, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import firebase from "../../firebase";
+import Navbar from "../../Navbar/Navbar";
 import DisplayImage from "../DisplayImage/DisplayImage";
+import './AddListing.css';
+
 export default function AddListing() {
     const listingTitle = useRef();
     const fullAdress = useRef();
@@ -88,132 +91,135 @@ export default function AddListing() {
     };
 
     return (
-        <>
-            <Card id='card-container-signup'>
-                <Card.Body>
-                    <h2 className='text-center mb-4'>Add Listing</h2>
-                    {error && <Alert variant='danger'>{error}</Alert>}
+        <div className="add-listing-container">
+            <Navbar></Navbar>
+            <div className="login-container">
+                <Card className="card-container-add-listing">
+                    <Card.Body className="card-body-add-listing">
+                        <h2 className='text-center mb-4'>Add Listing</h2>
+                        {error && <Alert variant='danger'>{error}</Alert>}
 
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id='listingTitle'>
-                            <Form.Label>Listing Title</Form.Label>
-                            <Form.Control
-                                type='listingTitle'
-                                ref={listingTitle}
-                                required
-                            />
+                        <Form className="form" onSubmit={handleSubmit}>
+                            <Form.Group id='listing'>
+                                <Form.Label>Listing Title</Form.Label>
+                                <Form.Control
+                                    type='listingTitle'
+                                    ref={listingTitle}
+                                    required
+                                />
 
-                            <Form.Label>Full Adress</Form.Label>
-                            <Form.Control
-                                type='fullAdress'
-                                ref={fullAdress}
-                                required
-                            />
+                                <Form.Label>Full Adress</Form.Label>
+                                <Form.Control
+                                    type='fullAdress'
+                                    ref={fullAdress}
+                                    required
+                                />
 
-                            <Form.Label>Contact Phone Number</Form.Label>
-                            <Form.Control
-                                type='phoneNumber'
-                                ref={phoneNumber}
-                                required
-                            />
-                        
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control
-                                type='fullAdress'
-                                ref={description}
-                                required
-                            />
-                        
-                            <Form.Label>Accomodation Type</Form.Label>
-                            <Form.Select ref={accomodationType} required>
-                                <option>Apartment</option>
-                                <option>House</option>
-                                <option>Unique space</option>
-                            </Form.Select>
-                        
-                            <Form.Label>Type of space</Form.Label>
-                            <Form.Select ref={typeofspace} required>
-                                <option>Entire space</option>
-                                <option>Private room</option>
-                                <option>Shared Room</option>
-                            </Form.Select>
-                        
-                            <Form.Label>Number of guests</Form.Label>
-                            <Form.Control
-                                type='text'
-                                pattern='[0-9]*'
-                                ref={noofguests}
-                                required
-                            />
-                        
-                            <Form.Label>Number of bedrooms</Form.Label>
-                            <Form.Control
-                                type='text'
-                                pattern='[0-9]*'
-                                ref={noofbed}
-                                required
-                            />
-                        
-                            <Form.Label>Safety items</Form.Label>
-                            <Form.Select
-                                multiple={true}
-                                required
-                                onChange={handleSafetyItemsChange}
-                                value={safetyItems}
+                                <Form.Label>Contact Phone Number</Form.Label>
+                                <Form.Control
+                                    type='phoneNumber'
+                                    ref={phoneNumber}
+                                    required
+                                />
+                            
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control
+                                    type='fullAdress'
+                                    ref={description}
+                                    required
+                                />
+                            
+                                <Form.Label>Accomodation Type</Form.Label>
+                                <Form.Select ref={accomodationType} required>
+                                    <option>Apartment</option>
+                                    <option>House</option>
+                                    <option>Unique space</option>
+                                </Form.Select>
+                            
+                                <Form.Label>Type of space</Form.Label>
+                                <Form.Select ref={typeofspace} required>
+                                    <option>Entire space</option>
+                                    <option>Private room</option>
+                                    <option>Shared Room</option>
+                                </Form.Select>
+                            
+                                <Form.Label>Number of guests</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    pattern='[0-9]*'
+                                    ref={noofguests}
+                                    required
+                                />
+                            
+                                <Form.Label>Number of bedrooms</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    pattern='[0-9]*'
+                                    ref={noofbed}
+                                    required
+                                />
+                            
+                                <Form.Label>Safety items</Form.Label>
+                                <Form.Select
+                                    multiple={true}
+                                    required
+                                    onChange={handleSafetyItemsChange}
+                                    value={safetyItems}
+                                >
+                                    <option value={"First aid kit"}>
+                                        First aid kit
+                                    </option>
+                                    <option value={"Fire extinguisher"}>
+                                        Fire extinguisher
+                                    </option>
+                                    <option value={"Smoke alarm"}>
+                                        Smoke alarm
+                                    </option>
+                                </Form.Select>
+                            
+                                <Form.Label>Extra services</Form.Label>
+                                <Form.Select
+                                    multiple={true}
+                                    required
+                                    onChange={handleExtraServicesChange}
+                                    value={extraServices}
+                                >
+                                    <option value={"Medical care"}>
+                                        Medical care
+                                    </option>
+                                    <option value={"Food"}>Food</option>
+                                    <option value={"Transport"}>Transport</option>
+                                </Form.Select>
+                            
+                                <Form.Label>Additional facilities</Form.Label>
+                                <Form.Select
+                                    multiple={true}
+                                    required
+                                    onChange={handleAddFacilitiesChange}
+                                    value={addfacilities}
+                                >
+                                    <option value={"Pool"}>Pool</option>
+                                    <option value={"Kitchen"}>Kitchen</option>
+                                    <option value={"Air conditioning"}>
+                                        Air conditioning{" "}
+                                    </option>
+                                </Form.Select>
+                            
+                                <Form.Label>Upload image</Form.Label>
+                                <DisplayImage onImgChange={onImgUpload} />
+                            </Form.Group>
+
+                            <Button
+                                variant="primary"
+                                className='w-100'
+                                type='submit'
                             >
-                                <option value={"First aid kit"}>
-                                    First aid kit
-                                </option>
-                                <option value={"Fire extinguisher"}>
-                                    Fire extinguisher
-                                </option>
-                                <option value={"Smoke alarm"}>
-                                    Smoke alarm
-                                </option>
-                            </Form.Select>
-                        
-                            <Form.Label>Extra services</Form.Label>
-                            <Form.Select
-                                multiple={true}
-                                required
-                                onChange={handleExtraServicesChange}
-                                value={extraServices}
-                            >
-                                <option value={"Medical care"}>
-                                    Medical care
-                                </option>
-                                <option value={"Food"}>Food</option>
-                                <option value={"Transport"}>Transport</option>
-                            </Form.Select>
-                        
-                            <Form.Label>Additional facilities</Form.Label>
-                            <Form.Select
-                                multiple={true}
-                                required
-                                onChange={handleAddFacilitiesChange}
-                                value={addfacilities}
-                            >
-                                <option value={"Pool"}>Pool</option>
-                                <option value={"Kitchen"}>Kitchen</option>
-                                <option value={"Air conditioning"}>
-                                    Air conditioning{" "}
-                                </option>
-                            </Form.Select>
-                        
-                            <Form.Label>Upload image</Form.Label>
-                            <DisplayImage onImgChange={onImgUpload} />
-                        </Form.Group>
-
-                        <Button
-                            disabled={loading}
-                            className='w-100 auth-button'
-                            type='submit'
-                        >
-                            Add new listing
-                        </Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-        </>
+                                Add new listing
+                            </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+            </div>
+        </div>
     );
 }

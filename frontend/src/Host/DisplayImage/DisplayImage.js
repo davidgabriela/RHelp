@@ -1,20 +1,13 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import FileBase64 from "react-file-base64";
+import './DisplayImage.css';
 
 const UploadAndDisplayImage = (props) => {
     const [selectedImage, setSelectedImage] = useState("");
 
     return (
-        <div>
-            {selectedImage && (
-                <div>
-                    <img alt='not fount' width={"400px"} src={selectedImage} />
-                    <button onClick={() => setSelectedImage(null)}>
-                        Remove
-                    </button>
-                </div>
-            )}
-
+        <div className="upload">
             <FileBase64
                 type='file'
                 multiple={false}
@@ -23,6 +16,15 @@ const UploadAndDisplayImage = (props) => {
                     props.onImgChange(base64);
                 }}
             />
+            {selectedImage && (
+                <div className="photo">
+                    <Button variant="dark" onClick={() => setSelectedImage(null)}>
+                        Remove
+                    </Button>
+                    <img alt='upload' width={"400px"} src={selectedImage} />
+                </div>
+            )}
+
         </div>
     );
 };

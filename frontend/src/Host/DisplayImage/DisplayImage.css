@@ -2,3 +2,20 @@
     height: 200px;
     width: 200px;  
 }
+
+.upload {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.photo {
+    gap:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.photo button {
+    margin-top: 10px;
+}

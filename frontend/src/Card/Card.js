@@ -8,7 +8,7 @@ const ListCard = (props) => {
         props.delete(idx, id)
     }
     return (
-        <Card style={{ width: '19rem' }}>
+        <Card style={{ width: '20vw' }}>
             <div className="overflow">
                 <Card.Img variant="top" src={props.imgsrc} />
             </div>
